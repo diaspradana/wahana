@@ -9,7 +9,7 @@ public class Wahana {
     private String kategori;
     private double harga;
     private String gambar;
-    // add jumlah tiket
+    private int jumlahTiket;
 
     public Wahana() {
     }
@@ -69,5 +69,13 @@ public class Wahana {
 
     public void setGambar(String gambar) {
         this.gambar = gambar;
+    }
+
+    public int getJumlahTiket() {
+        return jumlahTiket;
+    }
+
+    public void setJumlahTiket(int jumlahTiket) {
+        this.jumlahTiket = jumlahTiket;
     }
 }
