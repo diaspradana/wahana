@@ -9,6 +9,7 @@ public class Wahana {
     private String kategori;
     private double harga;
     private String gambar;
+    // add jumlah tiket
 
     public Wahana() {
     }

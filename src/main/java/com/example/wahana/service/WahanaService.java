@@ -23,7 +23,7 @@ public class WahanaService {
     }
 
     // Searching dan Sorting
-    public  List<Wahana> carWahana(String keyword, String sortBy, String sortDir){
+    public  List<Wahana> cariWahana(String keyword, String sortBy, String sortDir){
         List<Wahana> result = wahanaList;
 
         if (keyword != null && !keyword.isEmpty()) {
