@@ -1,4 +1,4 @@
-package com.example.wahana.model;
+package com.example.wahana.model.entity;
 
 public class User {
     private String username;

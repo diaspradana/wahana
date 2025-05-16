@@ -1,7 +1,8 @@
-package com.example.wahana.service;
+package com.example.wahana.model.service;
 
-import com.example.wahana.model.User;
 import org.springframework.stereotype.Service;
+
+import com.example.wahana.model.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

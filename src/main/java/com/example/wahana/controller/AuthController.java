@@ -1,7 +1,8 @@
 package com.example.wahana.controller;
 
-import com.example.wahana.model.User;
-import com.example.wahana.service.UserService;
+import com.example.wahana.model.entity.User;
+import com.example.wahana.model.service.UserService;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
