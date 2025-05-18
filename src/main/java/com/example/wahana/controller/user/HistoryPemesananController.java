@@ -45,20 +45,34 @@ public class HistoryPemesananController {
         return "history";
     }
 
-    public record DetailTiket(String namaWahana, long harga, int qty) {
-        public long total() { return harga * qty; }
+    public static class DetailTiket {
+        private final String namaWahana;
+        private final long harga;
+        private final int qty;
+
+        public DetailTiket(String namaWahana, long harga, int qty) {
+            this.namaWahana = namaWahana;
+            this.harga = harga;
+            this.qty = qty;
+        }
+
+        public String getNamaWahana() { return namaWahana; }
+        public long getHarga() { return harga; }
+        public int getQty() { return qty; }
+        public long getTotal() { return harga * qty; }
     }
 
     public static class Transaksi {
-        private LocalDateTime tanggal;
-        private String pembeli;
-        private String metodePembayaran;
+        private final LocalDateTime tanggal;
+        private final String pembeli;
+        private final String metodePembayaran;
         private List<DetailTiket> tiket = new ArrayList<>();
 
         public Transaksi(LocalDateTime tanggal, String pembeli, String metodePembayaran) {
             this.tanggal = tanggal;
             this.pembeli = pembeli;
             this.metodePembayaran = metodePembayaran;
+            this.tiket = new ArrayList<>();
         }
 
         public void addTiket(String ride, long harga, int qty) {
@@ -71,11 +85,11 @@ public class HistoryPemesananController {
         public List<DetailTiket> getTiket() { return tiket; }
 
         public int getTotalQty() {
-            return tiket.stream().mapToInt(DetailTiket::qty).sum();
+            return tiket.stream().mapToInt(DetailTiket::getQty).sum();
         }
 
         public long getSubtotal() {
-            return tiket.stream().mapToLong(DetailTiket::total).sum();
+            return tiket.stream().mapToLong(DetailTiket::getTotal).sum();
         }
     }
 
