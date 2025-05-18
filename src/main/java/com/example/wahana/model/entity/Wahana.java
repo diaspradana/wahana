@@ -76,7 +76,7 @@ public class Wahana {
         return stokTiket;
     }
 
-    public void setstokTiket(int stokTiket) {
+    public void setStokTiket(int stokTiket) {
         this.stokTiket = stokTiket;
     }
 }
