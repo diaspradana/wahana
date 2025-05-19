@@ -8,32 +8,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+// Controller untuk mengatur endpoint riwayat penjualan yang diakses oleh admin
 @RestController
 @RequestMapping("/admin/history")
 public class HistoryPenjualanController {
 
+    // Injeksi service yang menangani logika bisnis history penjualan
     @Autowired
     private HistoryPenjualanService historyPenjualanService;
 
-    // Get semua riwayat
+    // Mendapatkan semua riwayat penjualan dari database
     @GetMapping
     public List<HistoryPenjualan> getHistory() {
         return historyPenjualanService.getAllHistoryPenjualan();
     }
 
-    // Get rekap bulanan
+    // Mendapatkan rekap penjualan yang dikelompokkan per bulan
     @GetMapping("/rekap/bulanan")
     public Map<String, List<HistoryPenjualan>> getRekapBulanan() {
         return historyPenjualanService.getRekapBulanan();
     }
 
-    // Get total pendapatan per bulan
+    // Mendapatkan total pendapatan tiap bulan
     @GetMapping("/pendapatan/bulanan")
     public Map<String, Double> getTotalPendapatanPerBulan() {
         return historyPenjualanService.getTotalPendapatanPerBulan();
     }
 
-    // Get total tiket per bulan
+    // Mendapatkan jumlah tiket yang terjual tiap bulan
     @GetMapping("/tiket/bulanan")
     public Map<String, Integer> getTotalTiketPerBulan() {
         return historyPenjualanService.getTotalTiketPerBulan();
