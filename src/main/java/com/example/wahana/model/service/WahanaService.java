@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.wahana.model.entity.Wahana;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WahanaService {
     private final List<Wahana> wahanaList = new ArrayList<>();
-    private Long idCounter = 2L;
+    private Long idCounter = 3L;
 
     public WahanaService() {
         // Data Dummy
-        wahanaList.add(new Wahana(1L, "Bianglala", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1"));
-        wahanaList.add(new Wahana(2L, "Rumah Hantu", "Alamak takutnyooo", "Dewasa", 25000, "\uD83D\uDC7B"));
+        wahanaList.add(new Wahana(1L, "Bianglala", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1",200));
+        wahanaList.add(new Wahana(2L, "Rumah Hantu", "Alamak takutnyooo", "Dewasa", 25000, "\uD83D\uDC7B",200));
+        wahanaList.add(new Wahana(3L,"Roller Coaster","Kereta jungkir walik muter-muter","dewasa",30000,"\uD83C\uDFA2",200));
     }
 
     // Menampilkan semua list wahana

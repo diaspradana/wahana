@@ -24,13 +24,14 @@ public class KeranjangController {
 
     @GetMapping
     public String viewKeranjang(Model model, Principal principal) {
-        // In a real app, you would get the username from the authenticated user
-        String username = principal != null ? principal.getName() : "guest";
+        if (principal == null) {
+            return "redirect:/login";
+        }
         
+        String username = principal.getName();
         List<Pemesanan> items = pemesananService.getPemesananByUser(username);
         model.addAttribute("keranjangItems", items);
         
-        // Calculate total
         double total = items.stream()
                 .mapToDouble(p -> p.getWahana().getHarga() * p.getJumlah())
                 .sum();
@@ -41,21 +42,24 @@ public class KeranjangController {
 
     @PostMapping("/add/{wahanaId}")
     public String addToKeranjang(@PathVariable Long wahanaId, 
-                                @RequestParam(defaultValue = "1") int jumlah,
-                                Principal principal) {
-        // In a real app, you would get the username from the authenticated user
-        String username = principal != null ? principal.getName() : "guest";
+                               @RequestParam(defaultValue = "1") int jumlah,
+                               Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
         
         Wahana wahana = wahanaService.getWahanaById(wahanaId);
-        if (wahana != null) {
-            pemesananService.addToKeranjang(username, wahana, jumlah);
+        if (wahana == null) {
+            return "redirect:/user/tiket?error=wahana_not_found";
         }
+        
+        pemesananService.addToKeranjang(principal.getName(), wahana, jumlah);
         return "redirect:/user/tiket";
     }
 
     @PostMapping("/update/{id}")
     public String updateKeranjang(@PathVariable Long id, 
-                                 @RequestParam int jumlah) {
+                                @RequestParam int jumlah) {
         pemesananService.updateJumlahPemesanan(id, jumlah);
         return "redirect:/user/keranjang";
     }
@@ -68,10 +72,11 @@ public class KeranjangController {
 
     @PostMapping("/checkout")
     public String checkoutKeranjang(Principal principal) {
-        // In a real app, you would get the username from the authenticated user
-        String username = principal != null ? principal.getName() : "guest";
+        if (principal == null) {
+            return "redirect:/login";
+        }
         
-        pemesananService.checkout(username);
+        pemesananService.checkout(principal.getName());
         return "redirect:/user/history-pemesanan";
     }
 }
