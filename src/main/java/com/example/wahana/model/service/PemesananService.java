@@ -6,6 +6,13 @@ import java.util.List;
 
 public interface PemesananService {
     // Keranjang belanja
+    Pemesanan addToKeranjang(String userId, Wahana wahana, int jumlah);
+    List<Pemesanan> getPemesananByUser(String userId);
+    void updateJumlahPemesanan(Long pemesananId, int jumlah);
+    void removeFromKeranjang(Long pemesananId);
+    void checkout(String userId);
+    
+    // Method lainnya tetap sama...
     Pemesanan addToCart(String userId, Wahana wahana, int jumlah);
     List<Pemesanan> getCartItems(String userId);
     void updateCartItem(Long pemesananId, int jumlah);
