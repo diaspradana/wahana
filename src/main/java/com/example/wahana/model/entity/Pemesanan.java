@@ -102,7 +102,7 @@ public class Pemesanan {
     // Generate nomor tiket unik
     public void generateNomorTiket() {
         if (wahana != null && tanggalPemesanan != null) {
-            String prefix = wahana.getNama().substring(0, Math.min(3, wahana.getNama().length())).toUpperCase();
+            String prefix = wahana.getNamaWahana().substring(0, Math.min(3, wahana.getNamaWahana().length())).toUpperCase();
             String timestamp = String.valueOf(tanggalPemesanan.toEpochSecond(java.time.ZoneOffset.UTC));
             this.nomorTiket = prefix + "-" + timestamp.substring(timestamp.length() - 6);
         }
