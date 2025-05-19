@@ -4,35 +4,31 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class HistoryPenjualan {
-    private String namaWahana;
+
+    private Pemesanan pemesanan;
     private int jumlahTiket;
     private double totalHarga;
-    private LocalDateTime tanggalWaktu;
+    private LocalDateTime tanggalTransaksi;
     private String metodePembayaran;
     private String namaAdmin;
-    private String bulanTahun;
 
-    public HistoryPenjualan() {
-    }
+    public HistoryPenjualan() {}
 
-    public HistoryPenjualan(String namaWahana, int jumlahTiket, double totalHarga, LocalDateTime tanggalWaktu,
-                            String metodePembayaran, String namaAdmin) {
-        this.namaWahana = namaWahana;
+    public HistoryPenjualan(Pemesanan pemesanan, int jumlahTiket, double totalHarga, LocalDateTime tanggalTransaksi, String metodePembayaran, String namaAdmin) {
+        this.pemesanan = pemesanan;
         this.jumlahTiket = jumlahTiket;
         this.totalHarga = totalHarga;
-        this.tanggalWaktu = tanggalWaktu;
+        this.tanggalTransaksi = tanggalTransaksi;
         this.metodePembayaran = metodePembayaran;
         this.namaAdmin = namaAdmin;
-        this.bulanTahun = tanggalWaktu.format(DateTimeFormatter.ofPattern("MM-yyyy"));
     }
 
-    // Getter & Setter
-    public String getNamaWahana() {
-        return namaWahana;
+    public Pemesanan getPemesanan() {
+        return pemesanan;
     }
 
-    public void setNamaWahana(String namaWahana) {
-        this.namaWahana = namaWahana;
+    public void setPemesanan(Pemesanan pemesanan) {
+        this.pemesanan = pemesanan;
     }
 
     public int getJumlahTiket() {
@@ -51,13 +47,12 @@ public class HistoryPenjualan {
         this.totalHarga = totalHarga;
     }
 
-    public LocalDateTime getTanggalWaktu() {
-        return tanggalWaktu;
+    public LocalDateTime getTanggalTransaksi() {
+        return tanggalTransaksi;
     }
 
-    public void setTanggalWaktu(LocalDateTime tanggalWaktu) {
-        this.tanggalWaktu = tanggalWaktu;
-        this.bulanTahun = tanggalWaktu.format(DateTimeFormatter.ofPattern("MM-yyyy"));
+    public void setTanggalTransaksi(LocalDateTime tanggalTransaksi) {
+        this.tanggalTransaksi = tanggalTransaksi;
     }
 
     public String getMetodePembayaran() {
@@ -77,10 +72,7 @@ public class HistoryPenjualan {
     }
 
     public String getBulanTahun() {
-        return bulanTahun;
-    }
-
-    public void setBulanTahun(String bulanTahun) {
-        this.bulanTahun = bulanTahun;
+        return tanggalTransaksi.format(DateTimeFormatter.ofPattern("MM-yyyy"));
     }
 }
+
