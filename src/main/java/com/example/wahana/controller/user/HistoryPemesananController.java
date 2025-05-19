@@ -81,7 +81,7 @@ public class HistoryPemesananController {
             this.tanggal = tanggal;
             this.pembeli = pembeli;
             this.metodePembayaran = metodePembayaran;
-            //this.tiket = new ArrayList<>();
+            this.tiket = new ArrayList<>();
         }
 
         public void addTiket(Wahana wahana, int qty) {
