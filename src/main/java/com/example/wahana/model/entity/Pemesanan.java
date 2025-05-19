@@ -101,24 +101,10 @@ public class Pemesanan {
 
     // Generate nomor tiket unik
     public void generateNomorTiket() {
-    // Tambahkan null check
-    if (wahana == null || tanggalPemesanan == null || wahana.getNamaWahana() == null) {
-        this.nomorTiket = "TKT-000000";
-        return;
+        if (wahana != null && tanggalPemesanan != null) {
+            String prefix = wahana.getNama().substring(0, Math.min(3, wahana.getNama().length())).toUpperCase();
+            String timestamp = String.valueOf(tanggalPemesanan.toEpochSecond(java.time.ZoneOffset.UTC));
+            this.nomorTiket = prefix + "-" + timestamp.substring(timestamp.length() - 6);
+        }
     }
-    
-    try {
-        // Ambil 3 huruf pertama nama wahana (pastikan nama tidak kosong)
-        String namaWahana = wahana.getNamaWahana().trim();
-        String prefix = namaWahana.substring(0, Math.min(3, namaWahana.length())).toUpperCase();
-        
-        // Generate timestamp
-        String timestamp = String.valueOf(tanggalPemesanan.toEpochSecond(java.time.ZoneOffset.UTC));
-        
-        // Gabungkan prefix dan timestamp
-        this.nomorTiket = prefix + "-" + timestamp.substring(Math.max(0, timestamp.length() - 6));
-    } catch (Exception e) {
-        this.nomorTiket = "TKT-ERROR";
-    }
-}
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <title>Riwayat Pemesanan • WonderPark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-700">
+<main class="max-w-5xl mx-auto px-6 py-10">
+    <h2 class="text-3xl font-semibold mb-6">Riwayat Pemesanan</h2>
+
+    <!-- Ringkasan -->
+    <section class="grid gap-6 sm:grid-cols-3 mb-12">
+        <div class="bg-white rounded-2xl shadow p-6 flex flex-col">
+            <span class="text-sm text-slate-500">Total Tiket Dibeli</span>
+            <span class="mt-auto text-3xl font-bold" th:text="${totalTiket}">0</span>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 flex flex-col">
+            <span class="text-sm text-slate-500">Total Pengeluaran</span>
+            <span class="mt-auto text-3xl font-bold" th:text="${#numbers.formatInteger(totalBiaya, '#,###')}">
+                Rp0
+            </span>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 flex flex-col">
+            <span class="text-sm text-slate-500">Bulan Paling Aktif</span>
+            <span class="mt-auto text-3xl font-bold" th:text="${bulanAktif}">-</span>
+        </div>
+    </section>
+
+    <!-- Tabel histori -->
+    <div class="bg-white rounded-2xl shadow overflow-x-auto">
+        <table class="min-w-full text-sm">
+            <thead class="bg-slate-100 uppercase tracking-wider text-slate-600 text-xs">
+            <tr>
+                <th class="px-6 py-4 text-left">Tanggal / Waktu</th>
+                <th class="px-6 py-4 text-left">Nama Pembeli</th>
+                <th class="px-6 py-4 text-left">Pembayaran</th>
+                <th class="px-6 py-4 text-left">Jumlah Tiket</th>
+                <th class="px-6 py-4 text-left">Detail</th>
+                <th class="px-6 py-4 text-right">Total (Rp)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="t : ${transaksi}" class="border-t">
+                <td class="px-6 py-4 whitespace-nowrap" th:text="${#temporals.format(t.tanggal, 'dd MMM yyyy HH:mm')}">15 May 2025</td>
+                <td class="px-6 py-4" th:text="${t.pembeli}">Alya</td>
+                <td class="px-6 py-4" th:text="${t.metodePembayaran}">OVO</td>
+                <td class="px-6 py-4" th:text="${t.totalQty}">2</td>
+                <td class="px-6 py-4">
+                    <div th:each="d : ${t.tickets}">
+                        <span th:text="${d.qty}"></span>×
+                        <span th:text="${d.namaWahana}"></span>
+                        (<span th:text="${#numbers.formatInteger(d.harga, '#,###')}"></span>)<br/>
+                    </div>
+                </td>
+                <td class="px-6 py-4 text-right font-medium" th:text="${#numbers.formatInteger(t.subtotal, '#,###')}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

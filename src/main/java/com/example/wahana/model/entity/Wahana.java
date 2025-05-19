@@ -9,18 +9,19 @@ public class Wahana {
     private String kategori;
     private double harga;
     private String gambar;
-    // add jumlah tiket
+    private int stokTiket;
 
     public Wahana() {
     }
 
-    public Wahana(Long id,String namaWahana, String deskripsi, String kategori ,double harga, String gambar){
+    public Wahana(Long id,String namaWahana, String deskripsi, String kategori ,double harga, String gambar, int stokTiket){
         this.id = id;
         this.namaWahana = namaWahana;
         this.deskripsi = deskripsi;
         this.kategori = kategori;
         this.harga = harga;
         this.gambar = gambar;
+        this.stokTiket = stokTiket;
     }
 
     public Long getId(){
@@ -69,5 +70,13 @@ public class Wahana {
 
     public void setGambar(String gambar) {
         this.gambar = gambar;
+    }
+
+    public int getStokTiket() {
+        return stokTiket;
+    }
+
+    public void setStokTiket(int stokTiket) {
+        this.stokTiket = stokTiket;
     }
 }

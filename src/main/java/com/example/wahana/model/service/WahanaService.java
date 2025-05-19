@@ -13,8 +13,8 @@ public class WahanaService {
 
     public WahanaService() {
         // Data Dummy
-        wahanaList.add(new Wahana(1L, "Bianglala", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1"));
-        wahanaList.add(new Wahana(2L, "Rumah Hantu", "Alamak takutnyooo", "Dewasa", 25000, "\uD83D\uDC7B"));
+        wahanaList.add(new Wahana(1L, "Bianglala", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1",200));
+        wahanaList.add(new Wahana(2L, "Rumah Hantu", "Alamak takutnyooo", "Dewasa", 25000, "\uD83D\uDC7B",200));
     }
 
     // Menampilkan semua list wahana
