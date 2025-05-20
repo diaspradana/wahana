@@ -1,38 +1,20 @@
 package com.example.wahana.model.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "pemesanan")
 public class Pemesanan {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "wahana_id", nullable = false)
     private Wahana wahana;
-
-    @Column(name = "jumlah_tiket", nullable = false)
     private int jumlahTiket;
-
-    @Column(name = "total_harga", nullable = false)
     private double totalHarga;
-
-    @Column(name = "tanggal_pemesanan", nullable = false)
     private LocalDateTime tanggalPemesanan;
 
-    // === Constructor ===
-    public Pemesanan() {
-    }
+    public Pemesanan() {}
 
-    public Pemesanan(User user, Wahana wahana, int jumlahTiket, double totalHarga, LocalDateTime tanggalPemesanan) {
+    public Pemesanan(Long id, User user, Wahana wahana, int jumlahTiket, double totalHarga, LocalDateTime tanggalPemesanan) {
+        this.id = id;
         this.user = user;
         this.wahana = wahana;
         this.jumlahTiket = jumlahTiket;
@@ -40,7 +22,8 @@ public class Pemesanan {
         this.tanggalPemesanan = tanggalPemesanan;
     }
 
-    // === Getter & Setter ===
+    // Getter & Setter
+
     public Long getId() {
         return id;
     }

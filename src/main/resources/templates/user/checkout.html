@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+    <h2>Checkout Tiket</h2>
+
+    <div th:if="${#lists.isEmpty(keranjang)}">
+        <p>Keranjang kosong.</p>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(keranjang)}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nama Wahana</th>
+                    <th>Jumlah Tiket</th>
+                    <th>Total Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${keranjang}">
+                    <td th:text="${item.wahana.namaWahana}"></td>
+                    <td th:text="${item.jumlahTiket}"></td>
+                    <td th:text="${item.totalHarga}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Total Pembayaran: <strong th:text="${totalPembayaran}"></strong></p>
+
+        <form th:action="@{/user/keranjang/bayar}" method="post">
+            <button type="submit">Bayar Sekarang</button>
+        </form>
+    </div>
+</body>
+</html>
