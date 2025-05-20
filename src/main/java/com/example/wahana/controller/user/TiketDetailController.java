@@ -43,4 +43,22 @@ public class TiketDetailController {
         model.addAttribute("wahana", wahana);
         return "user/tiket_detail";
     }
+
+    @Controller
+@RequestMapping("/user/tiket")
+public class TiketController {
+    // ...
+    
+    @GetMapping
+    public String viewTiket(/* ... */) {
+        // ...
+        return "user/tiket";  // Mengarah ke templates/user/tiket.html
+    }
+
+    @GetMapping("/detail/{id}")
+    public String viewTiketDetail(/* ... */) {
+        // ...
+        return "user/tiket_detail";  // Mengarah ke templates/user/tiket_detail.html
+    }
+}
 }
