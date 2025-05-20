@@ -18,17 +18,17 @@ public class TiketDetailController {
     private WahanaService wahanaService;
 
     @GetMapping
-    public String viewTiket(@RequestParam(required = false) String keyword,
-                            @RequestParam(defaultValue = "id") String sortBy,
-                            @RequestParam(defaultValue = "asc") String sortDir,
-                            Model model) {
+    public String viewTiket(@RequestParam(required = false) String keyword, 
+                           @RequestParam(defaultValue = "id") String sortBy, 
+                           @RequestParam(defaultValue = "asc") String sortDir,
+                           Model model) {
         // Get filtered and sorted list of wahanas
         model.addAttribute("wahanaList", wahanaService.cariWahana(keyword, sortBy, sortDir));
         model.addAttribute("keyword", keyword);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", "asc".equals(sortDir) ? "desc" : "asc");
-
+        
         return "user/tiket";
     }
 
@@ -39,7 +39,7 @@ public class TiketDetailController {
             model.addAttribute("error", "Wahana tidak ditemukan");
             return "redirect:/user/tiket";
         }
-
+        
         model.addAttribute("wahana", wahana);
         return "user/tiket_detail";
     }
