@@ -6,15 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/user/tiket")
 public class TiketController {
 
-    @Autowired
-    private WahanaService wahanaService;
+    private final WahanaService wahanaService;
 
-    // Menampilkan daftar wahana
+    @Autowired
+    public TiketController(WahanaService wahanaService) {
+        this.wahanaService = wahanaService;
+    }
+
+    // Menampilkan daftar wahana dengan fitur pencarian dan sorting
     @GetMapping
     public String viewTiket(
             @RequestParam(required = false) String keyword,
@@ -28,19 +33,24 @@ public class TiketController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-        return "user/tiket"; // templates/user/tiket.html
+        return "user/tiket";
     }
 
-    // Menampilkan detail wahana
+    // Menampilkan detail wahana dengan validasi stok
     @GetMapping("/detail/{id}")
-    public String viewTiketDetail(@PathVariable Long id, Model model) {
+    public String viewTiketDetail(
+            @PathVariable Long id,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
         Wahana wahana = wahanaService.getWahanaById(id);
+        
         if (wahana == null) {
-            model.addAttribute("error", "Wahana tidak ditemukan");
+            redirectAttributes.addFlashAttribute("error", "Wahana tidak ditemukan");
             return "redirect:/user/tiket";
         }
 
-        // Tambahkan validasi stok
+        // Validasi stok
         if (wahana.getStokTiket() <= 0) {
             model.addAttribute("error", "Tiket untuk wahana ini sudah habis");
         }

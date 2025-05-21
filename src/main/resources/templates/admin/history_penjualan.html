@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pemesanan : ${pemesananList}">
+                <!-- Ubah dari riwayatPenjualan ke pemesananList -->
+                <tr th:each="pemesanan : ${pemesananList}"> 
                     <td th:text="${pemesanan.id}"></td>
                     <td th:text="${pemesanan.wahana.namaWahana}"></td>
                     <td th:text="${pemesanan.jumlahTiket}"></td>

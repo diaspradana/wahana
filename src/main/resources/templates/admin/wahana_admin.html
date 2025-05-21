@@ -11,11 +11,14 @@
         <a href="/admin/dashboard" class="btn btn-secondary mb-3">Kembali ke Dashboard</a>
         <a href="/admin/wahana/tambah" class="btn btn-primary mb-3">Tambah Wahana Baru</a>
 
+        <!-- Tambahkan kolom Kategori dan Icon -->
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nama Wahana</th>
+                    <th>Kategori</th>
+                    <th>Icon</th>
                     <th>Harga</th>
                     <th>Stok Tiket</th>
                     <th>Aksi</th>
@@ -25,6 +28,8 @@
                 <tr th:each="wahana : ${wahanaList}">
                     <td th:text="${wahana.id}"></td>
                     <td th:text="${wahana.namaWahana}"></td>
+                    <td th:text="${wahana.kategori}"></td>
+                    <td th:text="${wahana.gambar}"></td>
                     <td th:text="${'Rp ' + #numbers.formatDecimal(wahana.harga, 0, 'COMMA', 0, 'POINT')}"></td>
                     <td th:text="${wahana.stokTiket}"></td>
                     <td>
@@ -34,6 +39,10 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
     </div>
 </body>
 </html>

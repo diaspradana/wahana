@@ -4,17 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.wahana.model.service.AdminService;
 
 @Controller
+@RequestMapping("/admin/history")
 public class HistoryPenjualanController {
 
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
 
-    @GetMapping("/admin/history")
+    @Autowired
+    public HistoryPenjualanController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    @GetMapping
     public String showHistoryPenjualan(Model model) {
-        model.addAttribute("riwayatPenjualan", adminService.getAllPemesanan());
+        model.addAttribute("pemesananList", adminService.getAllPemesanan());
         return "admin/history_penjualan";
     }
 }
