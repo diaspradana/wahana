@@ -1,39 +1,52 @@
-// package com.example.wahana.model.service;
+package com.example.wahana.model.service;
 
-// import com.example.wahana.model.entity.User;
-// import com.example.wahana.model.entity.Pemesanan;
-// import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
-// import java.util.ArrayList;
-// import java.util.List;
-// import java.util.stream.Collectors;
+import com.example.wahana.model.entity.Pemesanan;
+import com.example.wahana.model.entity.Wahana;
 
-// @Service
-// public class AdminService {
+import java.util.ArrayList;
+import java.util.List;
 
-//     private final List<User> users = new ArrayList<>();
-//     private final List<Pemesanan> allOrders = new ArrayList<>();
+@Service
+public class AdminService {
 
-//     public List<User> getAllUsers() {
-//         return new ArrayList<>(users);
-//     }
+    private List<Wahana> daftarWahana = new ArrayList<>();
+    private List<Pemesanan> daftarPemesanan = new ArrayList<>();
 
-//     public List<Pemesanan> getAllOrders() {
-//         return new ArrayList<>(allOrders);
-//     }
+    public List<Wahana> getAllWahana() {
+        return daftarWahana;
+    }
 
-//     public void updateOrderStatus(Long orderId, String newStatus) {
-//         for (Pemesanan p : allOrders) {
-//             if (p.getId().equals(orderId)) {
-//                 p.setStatus(newStatus);
-//                 break;
-//             }
-//         }
-//     }
+    public void simpanWahana(Wahana wahana) {
+        wahana.setId((long) (daftarWahana.size() + 1));
+        daftarWahana.add(wahana);
+    }
 
-//     public void cancelOrder(Long orderId) {
-//         allOrders.removeIf(p -> p.getId().equals(orderId));
-//     }
+    public void hapusWahana(Long id) {
+        daftarWahana.removeIf(w -> w.getId().equals(id));
+    }
 
-//     // Bisa ditambahkan metode tambahan sesuai kebutuhan admin
-// }
+    public List<Pemesanan> getAllPemesanan() {
+        return daftarPemesanan;
+    }
+
+    public int getTotalWahana() {
+        return daftarWahana.size();
+    }
+
+    public int getTotalPemesanan() {
+        return daftarPemesanan.size();
+    }
+
+    public double getTotalPendapatan() {
+        return daftarPemesanan.stream()
+            .mapToDouble(Pemesanan::getTotalHarga)
+            .sum();
+    }
+
+    // Dummy method to simulate adding pemesanan (if needed externally)
+    public void tambahPemesanan(Pemesanan pemesanan) {
+        daftarPemesanan.add(pemesanan);
+    }
+}
