@@ -26,6 +26,10 @@
             <div class="col-md-8 offset-md-2">
                 <a href="/user/tiket" class="btn btn-outline-secondary mb-4">← Kembali ke Daftar Wahana</a>
 
+                <!-- Flash Messages -->
+                <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
                 <div class="text-center">
                     <div class="wahana-icon-detail" th:text="${wahana.gambar}"></div>
                     <h1 th:text="${wahana.namaWahana}"></h1>
@@ -51,30 +55,54 @@
 
                 <div class="detail-section">
                     <h3>Pesan Tiket</h3>
-                    <form th:action="@{/user/keranjang/tambah}" method="post">
-                        <input type="hidden" name="wahanaId" th:value="${wahana.id}">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="quantity" class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" id="quantity" name="jumlahTiket" min="1" th:max="${wahana.stokTiket}" value="1">
+                    
+                    <!-- Updated Ticket Purchase Form -->
+                    <div th:if="${wahana.stokTiket <= 0}" class="alert alert-warning">
+                        Tiket untuk wahana ini sudah habis!
+                    </div>
+                    <div th:unless="${wahana.stokTiket <= 0}">
+                        <form th:action="@{/user/keranjang/tambah}" method="post">
+                            <input type="hidden" name="wahanaId" th:value="${wahana.id}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Jumlah Tiket (Stok tersedia: <span th:text="${wahana.stokTiket}"></span>)</label>
+                                        <input type="number" class="form-control" name="jumlahTiket"
+                                            min="1" th:max="${wahana.stokTiket}" value="1"
+                                            oninput="this.value = Math.min(this.value, parseInt(this.max))">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-md-8 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary btn-lg">+ Tambah ke Keranjang</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-
-                <form th:action="@{/user/keranjang/checkout}" method="get">
-                    <input type="hidden" name="wahanaId" value="{{wahana.id}}" />
-                    <input type="hidden" name="harga" value="{{wahana.harga}}" />
-                    <button type="submit" class="btn btn-primary">Pesan Tiket</button>
-                </form>
 
             </div>
         </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Client-side validation for ticket quantity
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInput = document.querySelector('input[name="jumlahTiket"]');
+            if (quantityInput) {
+                quantityInput.addEventListener('change', function() {
+                    const max = parseInt(this.getAttribute('max'));
+                    if (parseInt(this.value) > max) {
+                        this.value = max;
+                    }
+                    if (parseInt(this.value) < 1) {
+                        this.value = 1;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

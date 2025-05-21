@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Wahana</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Kelola Wahana</h1>
+        <a href="/admin/dashboard" class="btn btn-secondary mb-3">Kembali ke Dashboard</a>
+        <a href="/admin/wahana/tambah" class="btn btn-primary mb-3">Tambah Wahana Baru</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Wahana</th>
+                    <th>Harga</th>
+                    <th>Stok Tiket</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="wahana : ${wahanaList}">
+                    <td th:text="${wahana.id}"></td>
+                    <td th:text="${wahana.namaWahana}"></td>
+                    <td th:text="${'Rp ' + #numbers.formatDecimal(wahana.harga, 0, 'COMMA', 0, 'POINT')}"></td>
+                    <td th:text="${wahana.stokTiket}"></td>
+                    <td>
+                        <a th:href="@{/admin/wahana/edit/{id}(id=${wahana.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/admin/wahana/hapus/{id}(id=${wahana.id})}" class="btn btn-danger btn-sm">Hapus</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors; // Import yang ditambahkan
 
 @Service
 public class PemesananService {
@@ -12,12 +13,16 @@ public class PemesananService {
     private Long idCounter = 1L;
 
     public List<Pemesanan> getAllPemesanan() {
-        return pemesananList;
+        return new ArrayList<>(pemesananList); // Return copy untuk keamanan
     }
 
     public Pemesanan savePemesanan(Pemesanan pemesanan) {
         if (pemesanan.getId() == null) {
             pemesanan.setId(idCounter++);
+            pemesananList.add(pemesanan);
+        } else {
+            // Update existing pemesanan jika diperlukan
+            pemesananList.removeIf(p -> p.getId().equals(pemesanan.getId()));
             pemesananList.add(pemesanan);
         }
         return pemesanan;
@@ -25,7 +30,7 @@ public class PemesananService {
 
     public List<Pemesanan> getPemesananByUserId(Long userId) {
         return pemesananList.stream()
-                .filter(p -> p.getUser().getId().equals(userId))
-                .toList();
+                .filter(p -> p.getUser() != null && p.getUser().getId().equals(userId))
+                .collect(Collectors.toList());
     }
 }

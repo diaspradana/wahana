@@ -26,7 +26,7 @@ public class WahanaService {
     }
 
     // Searching dan Sorting
-    public  List<Wahana> cariWahana(String keyword, String sortBy, String sortDir){
+    public List<Wahana> cariWahana(String keyword, String sortBy, String sortDir){
         List<Wahana> result = wahanaList;
 
         if (keyword != null && !keyword.isEmpty()) {
@@ -81,7 +81,12 @@ public class WahanaService {
         wahanaList.removeIf(w -> w.getId().equals(id));
     }
 
-    public Wahana getWahanaByID(Long id){
-        return wahanaList.stream().filter(w -> w.getId().equals(id)).findFirst().orElse(null);
+    public boolean kurangiStok(Long wahanaId, int jumlah) {
+        Wahana wahana = getWahanaById(wahanaId);
+        if (wahana != null && wahana.getStokTiket() >= jumlah) {
+            wahana.setStokTiket(wahana.getStokTiket() - jumlah);
+            return true;
+        }
+        return false;
     }
 }

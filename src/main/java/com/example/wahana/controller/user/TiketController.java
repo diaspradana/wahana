@@ -40,7 +40,12 @@ public class TiketController {
             return "redirect:/user/tiket";
         }
 
+        // Tambahkan validasi stok
+        if (wahana.getStokTiket() <= 0) {
+            model.addAttribute("error", "Tiket untuk wahana ini sudah habis");
+        }
+
         model.addAttribute("wahana", wahana);
-        return "user/tiket_detail"; // templates/user/tiket_detail.html
+        return "user/tiket_detail";
     }
 }
