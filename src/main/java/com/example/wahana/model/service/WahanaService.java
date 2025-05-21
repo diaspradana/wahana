@@ -15,9 +15,14 @@ public class WahanaService {
 
     public WahanaService() {
         // Data Dummy
-        wahanaList.add(new Wahana(1L, "Bianglala", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1",200));
-        wahanaList.add(new Wahana(2L, "Rumah Hantu", "Alamak takutnyooo", "Dewasa", 25000, "\uD83D\uDC7B",200));
-        wahanaList.add(new Wahana(3L,"Roller Coaster","Kereta jungkir walik muter-muter","dewasa",30000,"\uD83C\uDFA2",200));
+        wahanaList.add(new Wahana(1L,"Kincir Ria", "Iso muter bjir", "Semua Umur", 30000, "\uD83C\uDFA1",200));
+        wahanaList.add(new Wahana(2L,"Rumah Hantu", "Alamak takutnyooo", "Dewasa/Remaja", 25000, "\uD83D\uDC7B",200));
+        wahanaList.add(new Wahana(3L,"Roller Coaster","Kereta jungkir walik muter-muter","Dewasa/Remaja",30000,"\uD83C\uDFA2",200));
+        wahanaList.add(new Wahana(4L,"Komedi Putar","Peningnya kepalaku","Semua Umur",20000,"\uD83C\uDFA0",200));
+        wahanaList.add(new Wahana(5L,"Rumah Kaca","Kalian bisa lihat wajah diri sendiri yang buruk rupa dari segala sisi awokawok","Semua Umur",18000,"\uD83E\uDE9E",200));
+        wahanaList.add(new Wahana(6L,"Kora-Kora","Kapal fliying Dutchman oleng bjirr","Dewasa/Remaja",25000,"⛵",200));
+        wahanaList.add(new Wahana(7L,"Kereta Gantung","Kereta tapi gantung?","Semua Umur",20000,"\uD83D\uDEA0",200));
+        wahanaList.add(new Wahana(8L,"Kereta Mini","Intinya kalian di ajak berkeliling taman bermain sampai JMK48 debut","Semua Umur",18000,"\uD83D\uDE82",200));
     }
 
     // Menampilkan semua list wahana
