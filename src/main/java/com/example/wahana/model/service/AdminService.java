@@ -21,6 +21,11 @@ public class AdminService {
         return daftarWahana;
     }
 
+    // Method untuk mendapatkan semua pemesanan
+    public List<Pemesanan> getAllPemesanan() {
+        return pemesananService.getAllPemesanan();
+    }
+
     public void simpanWahana(Wahana wahana) {
         wahana.setId((long) (daftarWahana.size() + 1));
         daftarWahana.add(wahana);

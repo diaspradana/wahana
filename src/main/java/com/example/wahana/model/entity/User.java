@@ -3,19 +3,20 @@ package com.example.wahana.model.entity;
 public class User {
     private Long id;
     private String nama;
-
     private String username;
     private String password;
     private String role;
+    private String email;
 
     public User() {}
 
-    public User(Long id, String nama, String username, String password, String role) {
+    public User(Long id, String nama, String username, String password, String role, String email) {
         this.id = id;
         this.nama = nama;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 
     // Getter & Setter
@@ -54,5 +55,13 @@ public class User {
     }
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -45,7 +45,7 @@ public class KeranjangController {
             double total = wahana.getHarga() * jumlahTiket;
             Pemesanan pemesanan = new Pemesanan(
                 idCounter++, 
-                new User(1L, "User Biasa", "user1", "pass", "user"), 
+                new User(1L, "User Biasa", "user1", "pass", "user", "user"), 
                 wahana, 
                 jumlahTiket, 
                 total, 

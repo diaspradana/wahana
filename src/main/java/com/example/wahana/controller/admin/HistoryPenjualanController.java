@@ -21,6 +21,7 @@ public class HistoryPenjualanController {
     @GetMapping
     public String showHistoryPenjualan(Model model) {
         model.addAttribute("pemesananList", adminService.getAllPemesanan());
+        model.addAttribute("totalPendapatan", adminService.getTotalPendapatan());
         return "admin/history_penjualan";
     }
 }
