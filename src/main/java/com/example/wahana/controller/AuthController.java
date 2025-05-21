@@ -58,17 +58,6 @@ public class AuthController {
         return "redirect:/login?logout";
     }
 
-    // Admin Dashboard
-    @GetMapping("/admin/dashboard")
-    public String adminDashboard(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("loggedInUser");
-        if (user == null || !"admin".equalsIgnoreCase(user.getRole())) {
-            return "redirect:/login";
-        }
-        model.addAttribute("user", user);
-        return "admin/admin_dashboard";
-    }
-
     // User Dashboard
     @GetMapping("/user/dashboard")
     public String userDashboard(HttpSession session, Model model) {
