@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Penjualan</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <h1>Riwayat Penjualan</h1>
+    <a href="/admin/dashboard">Kembali ke Dashboard</a>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Pengguna</th>
+                <th>Wahana</th>
+                <th>Jumlah Tiket</th>
+                <th>Total Harga</th>
+                <th>Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p, iterStat : ${riwayatPenjualan}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${p.namaUser}">Nama</td>
+                <td th:text="${p.namaWahana}">Wahana</td>
+                <td th:text="${p.jumlahTiket}">0</td>
+                <td>Rp <span th:text="${p.totalHarga}">0</span></td>
+                <td th:text="${p.tanggalPemesanan}">2025-05-21</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+~~
