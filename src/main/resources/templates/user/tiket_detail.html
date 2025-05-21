@@ -48,15 +48,15 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="detail-section">
                     <h3>Pesan Tiket</h3>
-                    <form th:action="@{/user/keranjang/add}" method="post">
+                    <form th:action="@{/user/keranjang/tambah}" method="post">
                         <input type="hidden" name="wahanaId" th:value="${wahana.id}">
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="quantity" class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" min="1" th:max="${wahana.stokTiket}" value="1">
+                                <input type="number" class="form-control" id="quantity" name="jumlahTiket" min="1" th:max="${wahana.stokTiket}" value="1">
                             </div>
                             <div class="col-md-8 d-flex align-items-end">
                                 <button type="submit" class="btn btn-primary btn-lg">+ Tambah ke Keranjang</button>
@@ -64,6 +64,13 @@
                         </div>
                     </form>
                 </div>
+
+                <form th:action="@{/user/keranjang/checkout}" method="get">
+                    <input type="hidden" name="wahanaId" value="{{wahana.id}}" />
+                    <input type="hidden" name="harga" value="{{wahana.harga}}" />
+                    <button type="submit" class="btn btn-primary">Pesan Tiket</button>
+                </form>
+
             </div>
         </div>
     </div>

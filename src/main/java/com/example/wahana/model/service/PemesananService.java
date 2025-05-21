@@ -1,34 +1,31 @@
-// package com.example.wahana.model.service;
+package com.example.wahana.model.service;
 
-// import com.example.wahana.model.entity.Pemesanan;
-// import com.example.wahana.model.entity.Wahana;
-// import java.util.List;
+import com.example.wahana.model.entity.Pemesanan;
+import org.springframework.stereotype.Service;
 
-// public interface PemesananService {
-//     // Keranjang belanja
-//     Pemesanan addToKeranjang(String userId, Wahana wahana, int jumlah);
-//     List<Pemesanan> getPemesananByUser(String userId);
-//     void updateJumlahPemesanan(Long pemesananId, int jumlah);
-//     void removeFromKeranjang(Long pemesananId);
-//     void checkout(String userId);
-    
-//     // Method lainnya tetap sama...
-//     Pemesanan addToCart(String userId, Wahana wahana, int jumlah);
-//     List<Pemesanan> getCartItems(String userId);
-//     void updateCartItem(Long pemesananId, int jumlah);
-//     void removeFromCart(Long pemesananId);
-//     void clearCart(String userId);
-    
-//     // Proses pemesanan
-//     Pemesanan processOrder(Long pemesananId, String metodePembayaran);
-//     List<Pemesanan> completeOrder(String userId, String metodePembayaran);
-    
-//     // History pemesanan
-//     List<Pemesanan> getOrderHistory(String userId);
-//     List<Pemesanan> getAllCompletedOrders();
-//     Pemesanan getOrderDetail(Long pemesananId);
-    
-//     // Admin functions
-//     void cancelOrder(Long pemesananId);
-//     void updateOrderStatus(Long pemesananId, String status);
-// 
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class PemesananService {
+    private final List<Pemesanan> pemesananList = new ArrayList<>();
+    private Long idCounter = 1L;
+
+    public List<Pemesanan> getAllPemesanan() {
+        return pemesananList;
+    }
+
+    public Pemesanan savePemesanan(Pemesanan pemesanan) {
+        if (pemesanan.getId() == null) {
+            pemesanan.setId(idCounter++);
+            pemesananList.add(pemesanan);
+        }
+        return pemesanan;
+    }
+
+    public List<Pemesanan> getPemesananByUserId(Long userId) {
+        return pemesananList.stream()
+                .filter(p -> p.getUser().getId().equals(userId))
+                .toList();
+    }
+}

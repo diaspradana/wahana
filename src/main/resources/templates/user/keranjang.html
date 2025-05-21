@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Keranjang Tiket</title>
+</head>
+<body>
+    <h2>Keranjang Tiket</h2>
+    <div th:if="${keranjang.isEmpty()}">
+        <p>Keranjang kosong.</p>
+    </div>
+    <div th:unless="${keranjang.isEmpty()}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nama Wahana</th>
+                    <th>Jumlah Tiket</th>
+                    <th>Total Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${keranjang}">
+                    <td th:text="${item.wahana.namaWahana}"></td>
+                    <td th:text="${item.jumlahTiket}"></td>
+                    <td th:text="${item.totalHarga}"></td>
+                    <td>
+                        <a th:href="@{/user/keranjang/delete/{id}(id=${item.id})}">Hapus</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            <a th:href="@{/user/keranjang/checkout}">Lanjut ke Checkout</a>
+        </p>
+    </div>
+</body>
+</html>

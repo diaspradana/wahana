@@ -14,9 +14,9 @@ public class UserService {
     private final List<User> users = new ArrayList<>();
 
     public UserService() {
-        // Data dummy untuk testing (sebaiknya diganti dengan database)
-        users.add(new User("admin", "admin123", "admin"));
-        users.add(new User("user", "user123", "user"));
+        // Data dummy untuk testing
+        users.add(new User(1L, "Admin", "admin", "admin123", "admin"));
+        users.add(new User(2L, "User Biasa", "user", "user123", "user"));
     }
 
     public User login(String username, String password) {

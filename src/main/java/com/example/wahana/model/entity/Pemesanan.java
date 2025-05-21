@@ -1,18 +1,28 @@
 package com.example.wahana.model.entity;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Pemesanan {
+
     private Long id;
-    private String userId;
+    private User user;
     private Wahana wahana;
-    private int jumlah;
+    private int jumlahTiket;
     private double totalHarga;
     private LocalDateTime tanggalPemesanan;
-    private String status; // DRAFT, COMPLETED, CANCELLED
-    private String metodePembayaran;
-    private String nomorTiket;
+
+    public Pemesanan() {}
+
+    public Pemesanan(Long id, User user, Wahana wahana, int jumlahTiket, double totalHarga, LocalDateTime tanggalPemesanan) {
+        this.id = id;
+        this.user = user;
+        this.wahana = wahana;
+        this.jumlahTiket = jumlahTiket;
+        this.totalHarga = totalHarga;
+        this.tanggalPemesanan = tanggalPemesanan;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -22,12 +32,12 @@ public class Pemesanan {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Wahana getWahana() {
@@ -38,12 +48,12 @@ public class Pemesanan {
         this.wahana = wahana;
     }
 
-    public int getJumlah() {
-        return jumlah;
+    public int getJumlahTiket() {
+        return jumlahTiket;
     }
 
-    public void setJumlah(int jumlah) {
-        this.jumlah = jumlah;
+    public void setJumlahTiket(int jumlahTiket) {
+        this.jumlahTiket = jumlahTiket;
     }
 
     public double getTotalHarga() {
@@ -60,48 +70,5 @@ public class Pemesanan {
 
     public void setTanggalPemesanan(LocalDateTime tanggalPemesanan) {
         this.tanggalPemesanan = tanggalPemesanan;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMetodePembayaran() {
-        return metodePembayaran;
-    }
-
-    public void setMetodePembayaran(String metodePembayaran) {
-        this.metodePembayaran = metodePembayaran;
-    }
-
-    public String getNomorTiket() {
-        return nomorTiket;
-    }
-
-    public void setNomorTiket(String nomorTiket) {
-        this.nomorTiket = nomorTiket;
-    }
-
-    public String getTanggalPemesananFormatted() {
-        if (tanggalPemesanan == null) return "";
-        return tanggalPemesanan.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-    }
-
-    public void hitungTotalHarga() {
-        if (wahana != null && wahana.getHarga() > 0) {
-            this.totalHarga = wahana.getHarga() * jumlah;
-        }
-    }
-
-    public void generateNomorTiket() {
-        if (wahana != null && tanggalPemesanan != null) {
-            String prefix = wahana.getNamaWahana().substring(0, Math.min(3, wahana.getNamaWahana().length())).toUpperCase();
-            String timestamp = String.valueOf(tanggalPemesanan.toEpochSecond(java.time.ZoneOffset.UTC));
-            this.nomorTiket = prefix + "-" + timestamp.substring(timestamp.length() - 6);
-        }
     }
 }
