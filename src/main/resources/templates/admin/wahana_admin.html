@@ -1,75 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Wahana</title>
+    <meta name="description" content="Dashboard Admin Wahana">
+    <meta name="author" content="Admin">
+    <meta name="keywords" content="dashboard admin wahana">
 
-    <!-- Fontfaces CSS-->
-    <link th:href="@{/css/font-face.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+    <title>Kelola Wahana - Admin</title>
 
-    <!-- Bootstrap CSS-->
-    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link th:href="@{/css/theme.css}" rel="stylesheet" media="all">
+    <!-- CSS Libraries -->
+    <link th:href="@{/css/font-face.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link th:href="@{/css/theme.css}" rel="stylesheet">
 </head>
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img th:src="@{/images/icon/logo.png}" alt="Admin Panel" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="/admin/dashboard">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <a href="/admin/wahana">
-                                <i class="fas fa-ticket-alt"></i>Kelola Wahana</a>
-                        </li>
-                        <li>
-                            <a href="/admin/users">
-                                <i class="fas fa-users"></i>Kelola User</a>
-                        </li>
-                        <li>
-                            <a href="/admin/transaksi">
-                                <i class="fas fa-chart-bar"></i>Transaksi</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
+        <!-- Header Mobile -->
+        <div th:replace="~{layout_admin/header :: header-mobile}"></div>
 
-        <!-- PAGE CONTAINER-->
+        <!-- Sidebar -->
+        <div th:replace="~{layout_admin/sidebar :: sidebar}"></div>
+
+        <!-- Page Container -->
         <div class="page-container">
-            <!-- HEADER DESKTOP-->
+            <!-- Header Desktop -->
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Cari wahana..." />
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Cari wahana atau data...">
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -78,7 +53,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin" />
+                                            <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin">
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">Admin</a>
@@ -87,7 +62,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin" />
+                                                        <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin">
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -97,9 +72,22 @@
                                                     <span class="email">admin@wahana.com</span>
                                                 </div>
                                             </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Profil
+                                                    </a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Pengaturan
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="/logout">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a th:href="@{/logout}">
+                                                    <i class="zmdi zmdi-power"></i>Logout
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -109,35 +97,20 @@
                     </div>
                 </div>
             </header>
-            <!-- END HEADER DESKTOP-->
 
-            <!-- MAIN CONTENT-->
+            <!-- Main Content -->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <!-- Page Title and Controls -->
                         <div class="row">
                             <div class="col-md-12">
-                                <!-- Flash Messages -->
-                                <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <span th:text="${success}"></span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <span th:text="${error}"></span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <!-- DATA TABLE -->
                                 <h3 class="title-5 m-b-35">Kelola Wahana</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         <div class="rs-select2--light rs-select2--md">
                                             <select class="js-select2" name="kategori">
-                                                <option selected="selected">Semua Kategori</option>
+                                                <option selected>Semua Kategori</option>
                                                 <option value="roller-coaster">Roller Coaster</option>
                                                 <option value="water-ride">Water Ride</option>
                                                 <option value="family-ride">Family Ride</option>
@@ -146,14 +119,16 @@
                                             <div class="dropDownSelect2"></div>
                                         </div>
                                         <button class="au-btn-filter">
-                                            <i class="zmdi zmdi-filter-list"></i>Filter</button>
+                                            <i class="zmdi zmdi-filter-list"></i>Filter
+                                        </button>
                                     </div>
                                     <div class="table-data__tool-right">
                                         <a th:href="@{/admin/wahana/tambah}" class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                            <i class="zmdi zmdi-plus"></i>Tambah Wahana</a>
+                                            <i class="zmdi zmdi-plus"></i>Tambah Wahana
+                                        </a>
                                         <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                             <select class="js-select2" name="export">
-                                                <option selected="selected">Export</option>
+                                                <option selected>Export</option>
                                                 <option value="pdf">PDF</option>
                                                 <option value="excel">Excel</option>
                                             </select>
@@ -161,133 +136,86 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <th>ID</th>
-                                                <th>Nama Wahana</th>
-                                                <th>Kategori</th>
-                                                <th>Icon</th>
-                                                <th>Harga</th>
-                                                <th>Stok Tiket</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="tr-shadow" th:each="wahana : ${wahanaList}">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                                <td th:text="${wahana.id}">1</td>
-                                                <td>
-                                                    <div class="table-data__info">
-                                                        <h6 th:text="${wahana.namaWahana}">Nama Wahana</h6>
-                                                        <span>
-                                                            <small class="text-muted" th:text="${wahana.deskripsi}">Deskripsi wahana</small>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="role user" th:text="${wahana.kategori}">Kategori</span>
-                                                </td>
-                                                <td>
-                                                    <i th:class="${'fas ' + wahana.gambar}" style="font-size: 20px; color: #007bff;"></i>
-                                                </td>
-                                                <td th:text="${'Rp ' + #numbers.formatDecimal(wahana.harga, 0, 'COMMA', 0, 'POINT')}">Rp 50.000</td>
-                                                <td>
-                                                    <span th:class="${wahana.stokTiket > 0 ? 'badge badge-success' : 'badge badge-danger'}" 
-                                                          th:text="${wahana.stokTiket}">10</span>
-                                                </td>
-                                                <td>
-                                                    <span th:class="${wahana.stokTiket > 0 ? 'status--process' : 'status--denied'}" 
-                                                          th:text="${wahana.stokTiket > 0 ? 'Tersedia' : 'Habis'}">Tersedia</span>
-                                                </td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                        <a th:href="@{/admin/wahana/detail/{id}(id=${wahana.id})}" 
-                                                           class="item" data-toggle="tooltip" data-placement="top" title="Detail">
-                                                            <i class="zmdi zmdi-eye"></i>
-                                                        </a>
-                                                        <a th:href="@{/admin/wahana/edit/{id}(id=${wahana.id})}" 
-                                                           class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </a>
-                                                        <a th:href="@{/admin/wahana/hapus/{id}(id=${wahana.id})}" 
-                                                           class="item" data-toggle="tooltip" data-placement="top" title="Hapus"
-                                                           onclick="return confirm('Apakah Anda yakin ingin menghapus wahana ini?')">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </a>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- END DATA TABLE -->
                             </div>
                         </div>
 
-                        <!-- Statistics Cards -->
-                        <div class="row m-t-30">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number" th:text="${totalWahana}">23</h2>
-                                    <span class="desc">Total Wahana</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-ticket-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number" th:text="${wahanaAktif}">17</h2>
-                                    <span class="desc">Wahana Aktif</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-check-circle"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number" th:text="${totalStok}">128</h2>
-                                    <span class="desc">Total Stok Tiket</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number" th:text="${kategoriTerbanyak}">Family</h2>
-                                    <span class="desc">Kategori Terbanyak</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2024 Wahana Management System.</p>
-                                </div>
-                            </div>
+                        <!-- Data Table -->
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox">
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </th>
+                                        <th>ID</th>
+                                        <th>Nama Wahana</th>
+                                        <th>Kategori</th>
+                                        <th>Icon</th>
+                                        <th>Harga</th>
+                                        <th>Stok Tiket</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tr-shadow" th:each="wahana : ${wahanaList}">
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox">
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td th:text="${wahana.id}">1</td>
+                                        <td>
+                                            <div class="table-data__info">
+                                                <h6 th:text="${wahana.namaWahana}">Nama Wahana</h6>
+                                                <span>
+                                                    <small class="text-muted" th:text="${wahana.deskripsi}">Deskripsi wahana</small>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="role user" th:text="${wahana.kategori}">Kategori</span>
+                                        </td>
+                                        <td>
+                                            <i th:class="${'fas ' + wahana.gambar}" style="font-size: 20px; color: #007bff;"></i>
+                                        </td>
+                                        <td th:text="${'Rp ' + #numbers.formatDecimal(wahana.harga, 0, 'COMMA', 0, 'POINT')}">Rp 50.000</td>
+                                        <td>
+                                            <span th:class="${wahana.stokTiket > 0 ? 'badge badge-success' : 'badge badge-danger'}" 
+                                                  th:text="${wahana.stokTiket}">10</span>
+                                        </td>
+                                        <td>
+                                            <span th:class="${wahana.stokTiket > 0 ? 'status--process' : 'status--denied'}" 
+                                                  th:text="${wahana.stokTiket > 0 ? 'Tersedia' : 'Habis'}">Tersedia</span>
+                                        </td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <a th:href="@{/admin/wahana/detail/{id}(id=${wahana.id})}" 
+                                                   class="item" data-toggle="tooltip" data-placement="top" title="Detail">
+                                                    <i class="zmdi zmdi-eye"></i>
+                                                </a>
+                                                <a th:href="@{/admin/wahana/edit/{id}(id=${wahana.id})}" 
+                                                   class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </a>
+                                                <a th:href="@{/admin/wahana/hapus/{id}(id=${wahana.id})}" 
+                                                   class="item" data-toggle="tooltip" data-placement="top" title="Hapus"
+                                                   onclick="return confirm('Apakah Anda yakin ingin menghapus wahana ini?')">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </a>
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                    <i class="zmdi zmdi-more"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="spacer"></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -295,12 +223,10 @@
         </div>
     </div>
 
-    <!-- Jquery JS-->
+    <!-- JavaScript Libraries -->
     <script th:src="@{/vendor/jquery-3.2.1.min.js}"></script>
-    <!-- Bootstrap JS-->
     <script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
     <script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
-    <!-- Vendor JS -->
     <script th:src="@{/vendor/slick/slick.min.js}"></script>
     <script th:src="@{/vendor/wow/wow.min.js}"></script>
     <script th:src="@{/vendor/animsition/animsition.min.js}"></script>
@@ -309,10 +235,20 @@
     <script th:src="@{/vendor/counter-up/jquery.counterup.min.js}"></script>
     <script th:src="@{/vendor/circle-progress/circle-progress.min.js}"></script>
     <script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+    <script th:src="@{/vendor/chartjs/Chart.bundle.min.js}"></script>
     <script th:src="@{/vendor/select2/select2.min.js}"></script>
-
-    <!-- Main JS-->
+    
+    <!-- Main JS -->
     <script th:src="@{/js/main.js}"></script>
 
+    <!-- Initialize Select2 -->
+    <script>
+        $(document).ready(function() {
+            $('.js-select2').select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $('body')
+            });
+        });
+    </script>
 </body>
 </html>
