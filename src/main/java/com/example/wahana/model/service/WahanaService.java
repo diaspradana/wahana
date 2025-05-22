@@ -110,4 +110,13 @@ public class WahanaService {
         }
         return false;
     }
+
+    public List<Wahana> getWahanaByKategori(String kategori) {
+        if (kategori == null || kategori.isEmpty()) {
+            return getAllWahana();
+        }
+        return wahanaList.stream()
+                .filter(w -> w.getKategori().equals(kategori))
+                .collect(Collectors.toList());
+    }
 }

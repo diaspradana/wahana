@@ -1,42 +1,31 @@
 package com.example.wahana.model.service;
 
 import com.example.wahana.model.entity.Pemesanan;
-import com.example.wahana.model.entity.Wahana;
+import com.example.wahana.model.service.PemesananService;
+import com.example.wahana.model.service.WahanaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AdminService {
 
     private final PemesananService pemesananService;
-    private final List<Wahana> daftarWahana = new ArrayList<>();
+    private final WahanaService wahanaService;
 
-    public AdminService(PemesananService pemesananService) {
+    @Autowired
+    public AdminService(PemesananService pemesananService, WahanaService wahanaService) {
         this.pemesananService = pemesananService;
+        this.wahanaService = wahanaService;
     }
 
-    public List<Wahana> getAllWahana() {
-        return daftarWahana;
-    }
-
-    // Method untuk mendapatkan semua pemesanan
     public List<Pemesanan> getAllPemesanan() {
         return pemesananService.getAllPemesanan();
     }
 
-    public void simpanWahana(Wahana wahana) {
-        wahana.setId((long) (daftarWahana.size() + 1));
-        daftarWahana.add(wahana);
-    }
-
-    public void hapusWahana(Long id) {
-        daftarWahana.removeIf(w -> w.getId().equals(id));
-    }
-
     public int getTotalWahana() {
-        return daftarWahana.size();
+        return wahanaService.getAllWahana().size();
     }
 
     public int getTotalPemesanan() {

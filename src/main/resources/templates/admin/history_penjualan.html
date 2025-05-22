@@ -1,42 +1,117 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Riwayat Penjualan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Riwayat Penjualan Tiket</h1>
-        <a href="/admin/dashboard" class="btn btn-secondary mb-3">Kembali ke Dashboard</a>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Riwayat Penjualan Tiket">
+    <meta name="author" content="Admin">
+    <meta name="keywords" content="riwayat penjualan tiket wahana">
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Total Pendapatan</h5>
-                <p class="card-text h4" th:text="${'Rp ' + #numbers.formatDecimal(totalPendapatan, 0, 'COMMA', 0, 'POINT')}"></p>
+    <title>Riwayat Penjualan - Admin</title>
+
+    <!-- CSS Libraries -->
+    <link th:href="@{/css/font-face.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet">
+    <link th:href="@{/css/theme.css}" rel="stylesheet">
+</head>
+
+<body class="animsition">
+<div class="page-wrapper">
+    <!-- Header Mobile -->
+    <div th:replace="~{layout_admin/header :: header-mobile}"></div>
+
+    <!-- Sidebar -->
+    <div th:replace="~{layout_admin/sidebar :: sidebar}"></div>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Header Desktop -->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <h4 class="title-4">Riwayat Penjualan Tiket</h4>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                                <div class="au-card-title" style="background:#4272d7;">
+                                    <div class="bg-overlay bg-overlay--blue"></div>
+                                    <h3 class="text-white">Total Pendapatan</h3>
+                                </div>
+                                <div class="au-task js-list-load">
+                                    <div class="au-task__item au-task__item--danger p-3">
+                                        <div class="au-task__item-inner">
+                                            <h4 class="text-dark" th:text="${'Rp ' + #numbers.formatDecimal(totalPendapatan, 0, 'COMMA', 0, 'POINT')}"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                    <th>ID Pemesanan</th>
+                                    <th>Nama Wahana</th>
+                                    <th>Jumlah Tiket</th>
+                                    <th>Total Harga</th>
+                                    <th>Tanggal Pemesanan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pemesanan : ${pemesananList}">
+                                    <td th:text="${pemesanan.id}">1</td>
+                                    <td th:text="${pemesanan.wahana.namaWahana}">Nama Wahana</td>
+                                    <td th:text="${pemesanan.jumlahTiket}">2</td>
+                                    <td th:text="${'Rp ' + #numbers.formatDecimal(pemesanan.totalHarga, 0, 'COMMA', 0, 'POINT')}">Rp 100.000</td>
+                                    <td th:text="${#temporals.format(pemesanan.tanggalPemesanan, 'dd MMM yyyy HH:mm')}">01 Jan 2025 14:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID Pemesanan</th>
-                    <th>Nama Wahana</th>
-                    <th>Jumlah Tiket</th>
-                    <th>Total Harga</th>
-                    <th>Tanggal Pemesanan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="pemesanan : ${pemesananList}">
-                    <td th:text="${pemesanan.id}"></td>
-                    <td th:text="${pemesanan.wahana.namaWahana}"></td>
-                    <td th:text="${pemesanan.jumlahTiket}"></td>
-                    <td th:text="${'Rp ' + #numbers.formatDecimal(pemesanan.totalHarga, 0, 'COMMA', 0, 'POINT')}"></td>
-                    <td th:text="${#temporals.format(pemesanan.tanggalPemesanan, 'dd MMM yyyy HH:mm')}"></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+</div>
+
+<!-- JavaScript Libraries -->
+<script th:src="@{/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/slick/slick.min.js}"></script>
+<script th:src="@{/vendor/wow/wow.min.js}"></script>
+<script th:src="@{/vendor/animsition/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+<script th:src="@{/vendor/counter-up/jquery.waypoints.min.js}"></script>
+<script th:src="@{/vendor/counter-up/jquery.counterup.min.js}"></script>
+<script th:src="@{/vendor/circle-progress/circle-progress.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+<script th:src="@{/vendor/chartjs/Chart.bundle.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

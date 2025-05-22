@@ -108,32 +108,22 @@
                                 <h3 class="title-5 m-b-35">Kelola Wahana</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--md">
-                                            <select class="js-select2" name="kategori">
-                                                <option selected>Semua Kategori</option>
-                                                <option value="roller-coaster">Roller Coaster</option>
-                                                <option value="water-ride">Water Ride</option>
-                                                <option value="family-ride">Family Ride</option>
-                                                <option value="thrill-ride">Thrill Ride</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                        <button class="au-btn-filter">
-                                            <i class="zmdi zmdi-filter-list"></i>Filter
-                                        </button>
+                                        <form th:action="@{/admin/wahana}" method="get">
+                                            <div class="rs-select2--light rs-select2--md">
+                                                <select class="js-select2" name="kategori" onchange="this.form.submit()">
+                                                    <option value="">Semua Kategori</option>
+                                                    <option value="Semua Umur" th:selected="${kategori == 'Semua Umur'}">Semua Umur</option>
+                                                    <option value="Dewasa/Remaja" th:selected="${kategori == 'Dewasa/Remaja'}">Dewasa/Remaja</option>
+                                                    <option value="Anak-anak" th:selected="${kategori == 'Anak-anak'}">Anak-anak</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="table-data__tool-right">
                                         <a th:href="@{/admin/wahana/tambah}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                                             <i class="zmdi zmdi-plus"></i>Tambah Wahana
                                         </a>
-                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                            <select class="js-select2" name="export">
-                                                <option selected>Export</option>
-                                                <option value="pdf">PDF</option>
-                                                <option value="excel">Excel</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -144,16 +134,10 @@
                             <table class="table table-data2">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </th>
                                         <th>ID</th>
                                         <th>Nama Wahana</th>
                                         <th>Kategori</th>
-                                        <th>Icon</th>
+                                        <th>Gambar</th>
                                         <th>Harga</th>
                                         <th>Stok Tiket</th>
                                         <th>Status</th>
@@ -162,12 +146,6 @@
                                 </thead>
                                 <tbody>
                                     <tr class="tr-shadow" th:each="wahana : ${wahanaList}">
-                                        <td>
-                                            <label class="au-checkbox">
-                                                <input type="checkbox">
-                                                <span class="au-checkmark"></span>
-                                            </label>
-                                        </td>
                                         <td th:text="${wahana.id}">1</td>
                                         <td>
                                             <div class="table-data__info">
@@ -181,7 +159,7 @@
                                             <span class="role user" th:text="${wahana.kategori}">Kategori</span>
                                         </td>
                                         <td>
-                                            <i th:class="${'fas ' + wahana.gambar}" style="font-size: 20px; color: #007bff;"></i>
+                                            <img th:src="@{'/images/wahana/' + ${wahana.gambar}}" alt="Gambar Wahana" style="width: 80px; height: auto; border-radius: 4px;">
                                         </td>
                                         <td th:text="${'Rp ' + #numbers.formatDecimal(wahana.harga, 0, 'COMMA', 0, 'POINT')}">Rp 50.000</td>
                                         <td>
@@ -194,10 +172,6 @@
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <a th:href="@{/admin/wahana/detail/{id}(id=${wahana.id})}" 
-                                                   class="item" data-toggle="tooltip" data-placement="top" title="Detail">
-                                                    <i class="zmdi zmdi-eye"></i>
-                                                </a>
                                                 <a th:href="@{/admin/wahana/edit/{id}(id=${wahana.id})}" 
                                                    class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
@@ -207,9 +181,6 @@
                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus wahana ini?')">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                    <i class="zmdi zmdi-more"></i>
-                                                </button>
                                             </div>
                                         </td>
                                     </tr>

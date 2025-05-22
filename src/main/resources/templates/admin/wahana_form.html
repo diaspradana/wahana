@@ -3,110 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${wahana.id == null} ? 'Tambah Wahana' : 'Edit Wahana'"></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fontfaces & Bootstrap CSS -->
+    <link th:href="@{/css/font-face.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link th:href="@{/css/theme.css}" rel="stylesheet">
+
+    <!-- Custom Style -->
     <style>
         .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.1);
         }
+
         .form-title {
-            color: #0d6efd;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .image-upload-container {
+            border: 2px dashed #ced4da;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .image-upload-container.dragover {
+            border-color: #007bff;
+            background-color: #e7f1ff;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .btn-upload {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .btn-upload:hover {
+            background-color: #0069d9;
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="container py-5">
-        <div class="form-container">
-            <!-- Flash Messages -->
-            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
-            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
-            
-            <h1 class="form-title" th:text="${wahana.id == null} ? 'Tambah Wahana Baru' : 'Edit Wahana'"></h1>
-            
-            <a th:href="@{/admin/wahana}" class="btn btn-secondary mb-4">
-                <i class="bi bi-arrow-left"></i> Kembali ke Daftar Wahana
-            </a>
+<body class="animsition">
+<div class="page-wrapper">
+    <!-- Header and Sidebar -->
+    <div th:replace="~{layout_admin/header :: header-mobile}"></div>
+    <div th:replace="~{layout_admin/sidebar :: sidebar}"></div>
 
-            <form th:action="@{/admin/wahana/simpan}" th:object="${wahana}" method="post">
-                <input type="hidden" th:field="*{id}">
-                
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Nama Wahana</label>
-                        <input type="text" class="form-control" th:field="*{namaWahana}" required>
-                        <div class="invalid-feedback">Harap isi nama wahana</div>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Kategori</label>
-                        <select class="form-select" th:field="*{kategori}" required>
-                            <option value="">Pilih Kategori</option>
-                            <option value="Semua Umur">Semua Umur</option>
-                            <option value="Dewasa/Remaja">Dewasa/Remaja</option>
-                            <option value="Anak-anak">Anak-anak</option>
-                        </select>
+    <!-- Page Container -->
+    <div class="page-container">
+        <header th:replace="~{layout_admin/header :: header-desktop}"></header>
+
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Breadcrumb -->
+                            <div class="au-breadcrumb mb-4">
+                                <div class="au-breadcrumb-content">
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item"><a th:href="@{/admin}">Dashboard</a></li>
+                                        <li class="list-inline-item seprate"><span>/</span></li>
+                                        <li class="list-inline-item"><a th:href="@{/admin/wahana}">Kelola Wahana</a></li>
+                                        <li class="list-inline-item seprate"><span>/</span></li>
+                                        <li class="list-inline-item active" th:text="${wahana.id == null} ? 'Tambah Baru' : 'Edit'"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Form -->
+                            <div class="form-container">
+                                <!-- Flash Messages -->
+                                <div th:if="${success}" class="alert alert-success alert-dismissible fade show">
+                                    <span th:text="${success}"></span>
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                </div>
+                                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+                                    <span th:text="${error}"></span>
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                </div>
+
+                                <h3 class="form-title" th:text="${wahana.id == null} ? 'Tambah Wahana Baru' : 'Edit Wahana'"></h3>
+
+                                <form th:action="@{/admin/wahana/simpan}" th:object="${wahana}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                    <input type="hidden" th:field="*{id}">
+
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Nama Wahana</label>
+                                            <input type="text" class="form-control" th:field="*{namaWahana}" required>
+                                            <div class="invalid-feedback">Harap isi nama wahana</div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Kategori</label>
+                                            <select class="form-control" th:field="*{kategori}" required>
+                                                <option value="">Pilih Kategori</option>
+                                                <option value="Semua Umur">Semua Umur</option>
+                                                <option value="Dewasa/Remaja">Dewasa/Remaja</option>
+                                                <option value="Anak-anak">Anak-anak</option>
+                                            </select>
+                                            <div class="invalid-feedback">Harap pilih kategori</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label>Deskripsi</label>
+                                        <textarea class="form-control" th:field="*{deskripsi}" rows="4" required></textarea>
+                                        <div class="invalid-feedback">Harap isi deskripsi</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label>Harga (Rp)</label>
+                                            <input type="number" class="form-control" th:field="*{harga}" min="1000" step="1000" required>
+                                            <div class="invalid-feedback">Harap isi harga yang valid (minimal Rp 1.000)</div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Stok Tiket</label>
+                                            <input type="number" class="form-control" th:field="*{stokTiket}" min="0" required>
+                                            <div class="invalid-feedback">Harap isi stok tiket</div>
+                                        </div>
+                                       <!-- Bagian input gambar Wahana (ganti bagian ini) -->
+                                        <div class="col-md-4 mb-3">
+                                            <label for="gambarFile">Gambar Wahana</label>
+
+                                            <!-- Tampilkan gambar yang sudah ada -->
+                                            <div th:if="${wahana.gambar != null and wahana.gambar != ''}" id="currentImageWrapper">
+                                                <img th:src="@{'/images/wahana/' + ${wahana.gambar}}" class="image-preview mb-2 img-fluid" alt="Preview Gambar">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="removeCurrentImage()">Hapus Gambar</button>
+                                            </div>
+
+                                            <!-- Upload Area (ditampilkan saat belum ada gambar) -->
+                                            <div id="uploadArea" class="text-center mt-2" th:unless="${wahana.gambar != null and wahana.gambar != ''}">
+                                                <i class="fa fa-cloud-upload fa-3x text-muted mb-3"></i>
+                                                <p class="mb-2">Seret gambar ke sini atau klik untuk memilih</p>
+                                                <small class="text-muted d-block mb-2">Format: JPG, PNG (Maks. 5MB)</small>
+                                            </div>
+
+                                            <!-- Upload Gambar Baru -->
+                                            <div class="form-group mt-2">
+                                                <input type="file" class="form-control-file" id="gambarFile" name="gambarFile" accept="image/*" onchange="previewImage(event)">
+                                            </div>
+
+                                            <!-- Preview Gambar Baru -->
+                                            <div id="previewArea" class="mt-2 d-none">
+                                                <img id="imagePreview" class="image-preview img-fluid mb-2" alt="Preview Baru">
+                                                <button type="button" class="btn btn-warning btn-sm" onclick="removeCurrentImage()">Hapus Preview</button>
+                                            </div>
+
+                                            <!-- Hidden field untuk menyimpan nama gambar lama -->
+                                             <input type="hidden" id="hapusGambar" name="hapusGambar" value="false">
+                                            <input type="hidden" th:field="*{gambar}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group text-right">
+                                        <a th:href="@{/admin/wahana}" class="btn btn-secondary mr-2">
+                                            <i class="fa fa-arrow-left"></i> Kembali
+                                        </a>
+                                        <button type="reset" class="btn btn-outline-secondary mr-2">
+                                            <i class="fa fa-undo"></i> Reset
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-save"></i> Simpan
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End Form -->
+                        </div>
                     </div>
                 </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Deskripsi</label>
-                    <textarea class="form-control" th:field="*{deskripsi}" rows="4" required></textarea>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Harga (Rp)</label>
-                        <input type="number" class="form-control" th:field="*{harga}" min="1000" step="1000" required>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Stok Tiket</label>
-                        <input type="number" class="form-control" th:field="*{stokTiket}" min="0" required>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Icon/Emoji</label>
-                        <input type="text" class="form-control" th:field="*{gambar}" placeholder="Contoh: 🎡, 🎢">
-                    </div>
-                </div>
-                
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="reset" class="btn btn-outline-secondary me-md-2">
-                        <i class="bi bi-x-circle"></i> Reset
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> Simpan
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </div><!-- End Page Container -->
+</div><!-- End Page Wrapper -->
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Form Validation -->
-    <script>
-        (function() {
-            'use strict';
-            const forms = document.querySelectorAll('.needs-validation');
-            
-            Array.from(forms).forEach(function(form) {
+<!-- Scripts -->
+<script th:src="@{/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+
+<!-- Form Validation & Image Upload -->
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
+                    if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
                     form.classList.add('was-validated');
                 }, false);
             });
-        })();
-    </script>
+        }, false);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadContainer = document.getElementById('uploadContainer');
+        const fileInput = document.getElementById('gambarFile');
+        const previewArea = document.getElementById('previewArea');
+        const imagePreview = document.getElementById('imagePreview');
+        const uploadArea = document.getElementById('uploadArea');
+        const currentImageWrapper = document.getElementById('currentImageWrapper');
+
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                if (!file.type.match('image.*')) {
+                    alert('Harap pilih file gambar (JPG, PNG)');
+                    return;
+                }
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Ukuran file terlalu besar. Maksimal 5MB');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagePreview.src = event.target.result;
+                    if (uploadArea) uploadArea.classList.add('d-none');
+                    if (currentImageWrapper) currentImageWrapper.classList.add('d-none');
+                    previewArea.classList.remove('d-none');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        if (uploadContainer) {
+            uploadContainer.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadContainer.classList.add('dragover');
+            });
+            uploadContainer.addEventListener('dragleave', function() {
+                uploadContainer.classList.remove('dragover');
+            });
+            uploadContainer.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadContainer.classList.remove('dragover');
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput.files = e.dataTransfer.files;
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            });
+        }
+    });
+
+    function removePreview() {
+        const previewArea = document.getElementById('previewArea');
+        const fileInput = document.getElementById('gambarFile');
+        const uploadArea = document.getElementById('uploadArea');
+        const currentImageWrapper = document.getElementById('currentImageWrapper');
+        fileInput.value = '';
+        previewArea.classList.add('d-none');
+        if (currentImageWrapper) {
+            currentImageWrapper.classList.remove('d-none');
+        } else if (uploadArea) {
+            uploadArea.classList.remove('d-none');
+        }
+    }
+
+    function removeCurrentImage() {
+        const currentImageWrapper = document.getElementById('currentImageWrapper');
+        const uploadArea = document.getElementById('uploadArea');
+        const gambarField = document.querySelector('input[name="gambar"]');
+        const hapusGambarField = document.getElementById('hapusGambar');
+
+        if (currentImageWrapper) currentImageWrapper.classList.add('d-none');
+        if (uploadArea) uploadArea.classList.remove('d-none');
+
+        if (gambarField) gambarField.value = '';
+        if (hapusGambarField) hapusGambarField.value = 'true';
+
+        // Reset file input juga
+        const fileInput = document.getElementById('gambarFile');
+        if (fileInput) fileInput.value = '';
+    }
+
+
+    function previewImage(event) {
+    const fileInput = event.target;
+    const previewArea = document.getElementById('previewArea');
+    const imagePreview = document.getElementById('imagePreview');
+    const uploadArea = document.getElementById('uploadArea');
+    const currentImageWrapper = document.getElementById('currentImageWrapper');
+
+    if (fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        if (!file.type.match('image.*')) {
+            alert('Harap pilih file gambar (JPG, PNG)');
+            fileInput.value = '';
+            return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Ukuran file terlalu besar. Maksimal 5MB');
+            fileInput.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            previewArea.classList.remove('d-none');
+            if (uploadArea) uploadArea.classList.add('d-none');
+            if (currentImageWrapper) currentImageWrapper.classList.add('d-none');
+        };
+        reader.readAsDataURL(file);
+    } else {
+        previewArea.classList.add('d-none');
+        if (uploadArea) uploadArea.classList.remove('d-none');
+        if (currentImageWrapper) currentImageWrapper.classList.remove('d-none');
+    }
+}
+
+</script>
 </body>
 </html>
