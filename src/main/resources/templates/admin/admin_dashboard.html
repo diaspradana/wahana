@@ -38,41 +38,15 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
-        <!-- Panggil fragment header dari file header.html -->
-        <div th:replace="~{layout/header :: header}"></div>
+        <div th:replace="~{layout_admin/header :: header-mobile}"></div>
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a th:href="@{/admin}">
-                    <img th:src="@{/images/icon/logo.png}" alt="Admin Dashboard" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="active">
-                            <a th:href="@{/admin}">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/wahana}">
-                                <i class="fas fa-gamepad"></i>Kelola Wahana</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/history}">
-                                <i class="fas fa-history"></i>Riwayat Penjualan</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/logout}">
-                                <i class="fas fa-sign-out-alt"></i>Logout</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
+        <div th:replace="~{layout_admin/sidebar :: sidebar}"></div>
         <!-- END MENU SIDEBAR-->
+
+        <!-- Panggil header desktop -->
+        <div th:replace="~{layout_admin/header :: header-desktop}"></div>
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">

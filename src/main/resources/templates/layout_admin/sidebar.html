@@ -1,31 +1,35 @@
-<!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a th:href="@{/admin}">
-                    <img th:src="@{/images/icon/logo.png}" alt="Admin Dashboard" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="active">
-                            <a th:href="@{/admin}">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/wahana}">
-                                <i class="fas fa-gamepad"></i>Kelola Wahana</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/history}">
-                                <i class="fas fa-history"></i>Riwayat Penjualan</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/logout}">
-                                <i class="fas fa-sign-out-alt"></i>Logout</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- Fragment untuk sidebar -->
+    <aside th:fragment="sidebar" class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <a th:href="@{/admin}">
+                <img th:src="@{/images/icon/logo.png}" alt="Admin Dashboard" />
+            </a>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active">
+                        <a th:href="@{/admin}">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/admin/wahana}">
+                            <i class="fas fa-gamepad"></i>Kelola Wahana</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/admin/history}">
+                            <i class="fas fa-history"></i>Riwayat Penjualan</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}">
+                            <i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+</body>
+</html>
