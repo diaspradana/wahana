@@ -1,31 +1,438 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <!-- Required meta tags-->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Dashboard Admin Wahana">
+    <meta name="author" content="Admin">
+    <meta name="keywords" content="dashboard admin wahana">
+
+    <!-- Title Page-->
     <title>Dashboard Admin</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { color: #2c3e50; }
-        .card { padding: 20px; margin: 10px 0; background-color: #ecf0f1; border-radius: 8px; }
-        .nav a { margin-right: 15px; }
-    </style>
+
+    <!-- Fontfaces CSS-->
+    <link th:href="@{/css/font-face.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link th:href="@{/css/theme.css}" rel="stylesheet" media="all">
+
 </head>
-<body>
-    <h1>Dashboard Admin</h1>
-    <div class="nav">
-        <a href="/admin/wahana">Kelola Wahana</a>
-        <a href="/admin/history">Riwayat Penjualan</a>
-        <a href="/logout">Logout</a>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" th:href="@{/admin}">
+                            <img th:src="@{/images/icon/logo.png}" alt="Admin Dashboard" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li>
+                            <a th:href="@{/admin}">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/wahana}">
+                                <i class="fas fa-gamepad"></i>Kelola Wahana</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/history}">
+                                <i class="fas fa-history"></i>Riwayat Penjualan</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout}">
+                                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a th:href="@{/admin}">
+                    <img th:src="@{/images/icon/logo.png}" alt="Admin Dashboard" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active">
+                            <a th:href="@{/admin}">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/wahana}">
+                                <i class="fas fa-gamepad"></i>Kelola Wahana</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/history}">
+                                <i class="fas fa-history"></i>Riwayat Penjualan</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout}">
+                                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Cari wahana atau data..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin" />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">Admin</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img th:src="@{/images/icon/avatar-01.jpg}" alt="Admin" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">Admin</a>
+                                                    </h5>
+                                                    <span class="email">admin@wahana.com</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Profil</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Pengaturan</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a th:href="@{/logout}">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Dashboard Admin</h2>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Statistics Cards -->
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-gamepad"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2 th:text="${totalWahana != null ? totalWahana : 0}">0</h2>
+                                                <span>Total Wahana</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2 th:text="${totalPemesanan != null ? totalPemesanan : 0}">0</h2>
+                                                <span>Total Pemesanan</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-money"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>Rp <span th:text="${totalPendapatan != null ? #numbers.formatInteger(totalPendapatan, 0, 'COMMA') : 0}">0</span></h2>
+                                                <span>Total Pendapatan</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="title-1 m-b-25">Menu Cepat</h2>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <i class="zmdi zmdi-gamepad fa-3x text-primary mb-3"></i>
+                                                <h5 class="card-title">Kelola Wahana</h5>
+                                                <p class="card-text">Tambah, edit, atau hapus wahana yang tersedia</p>
+                                                <a th:href="@{/admin/wahana}" class="btn btn-primary">Kelola Wahana</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <i class="zmdi zmdi-assignment fa-3x text-success mb-3"></i>
+                                                <h5 class="card-title">Riwayat Penjualan</h5>
+                                                <p class="card-text">Lihat dan kelola riwayat penjualan tiket</p>
+                                                <a th:href="@{/admin/history}" class="btn btn-success">Lihat Riwayat</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <i class="zmdi zmdi-chart fa-3x text-warning mb-3"></i>
+                                                <h5 class="card-title">Laporan</h5>
+                                                <p class="card-text">Lihat laporan statistik dan analisis</p>
+                                                <a href="#" class="btn btn-warning">Lihat Laporan</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities (if available) -->
+                        <div class="row" th:if="${recentActivities != null and !recentActivities.isEmpty()}">
+                            <div class="col-lg-12">
+                                <h2 class="title-1 m-b-25">Aktivitas Terbaru</h2>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <th>Aktivitas</th>
+                                                <th>Detail</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="activity : ${recentActivities}">
+                                                <td th:text="${#temporals.format(activity.tanggal, 'dd-MM-yyyy HH:mm')}">-</td>
+                                                <td th:text="${activity.aktivitas}">-</td>
+                                                <td th:text="${activity.detail}">-</td>
+                                                <td>
+                                                    <span class="badge badge-success" th:if="${activity.status == 'success'}">Berhasil</span>
+                                                    <span class="badge badge-warning" th:if="${activity.status == 'pending'}">Pending</span>
+                                                    <span class="badge badge-danger" th:if="${activity.status == 'failed'}">Gagal</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2024 Dashboard Admin Wahana. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+        </div>
+        <!-- END PAGE CONTAINER-->
     </div>
 
-    <div class="card">
-        <h3>Total Wahana: <span th:text="${totalWahana}">0</span></h3>
-    </div>
-    <div class="card">
-        <h3>Total Pemesanan: <span th:text="${totalPemesanan}">0</span></h3>
-    </div>
-    <div class="card">
-        <h3>Total Pendapatan: Rp <span th:text="${totalPendapatan}">0</span></h3>
-    </div>
+    <!-- Jquery JS-->
+    <script th:src="@{/vendor/jquery-3.2.1.min.js}"></script>
+    <!-- Bootstrap JS-->
+    <script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+    <!-- Vendor JS -->
+    <script th:src="@{/vendor/slick/slick.min.js}"></script>
+    <script th:src="@{/vendor/wow/wow.min.js}"></script>
+    <script th:src="@{/vendor/animsition/animsition.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+    <script th:src="@{/vendor/counter-up/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/vendor/counter-up/jquery.counterup.min.js}"></script>
+    <script th:src="@{/vendor/circle-progress/circle-progress.min.js}"></script>
+    <script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+    <script th:src="@{/vendor/chartjs/Chart.bundle.min.js}"></script>
+    <script th:src="@{/vendor/select2/select2.min.js}"></script>
+
+    <!-- Main JS-->
+    <script th:src="@{/js/main.js}"></script>
+
+    <!-- Custom JS for charts -->
+    <script>
+        // Simple chart configurations for the overview widgets
+        if (typeof Chart !== 'undefined') {
+            // Widget Chart 1 - Total Wahana
+            var ctx1 = document.getElementById('widgetChart1');
+            if (ctx1) {
+                new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            data: [12, 19, 15, 17, 14, 13],
+                            borderColor: '#007bff',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: { display: false },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+
+            // Widget Chart 2 - Total Pemesanan
+            var ctx2 = document.getElementById('widgetChart2');
+            if (ctx2) {
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            data: [65, 78, 90, 81, 56, 65],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: { display: false },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+
+            // Widget Chart 3 - Total Pendapatan
+            var ctx3 = document.getElementById('widgetChart3');
+            if (ctx3) {
+                new Chart(ctx3, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            data: [28, 48, 40, 59, 86, 97],
+                            borderColor: '#ffc107',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            borderWidth: 2,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: { display: false },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+
 </body>
+
 </html>
