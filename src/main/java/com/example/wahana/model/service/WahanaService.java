@@ -22,8 +22,8 @@ public class WahanaService {
     tambahWahana(new Wahana(7l, "Kora-Kora", "Kapal besar yang berayun tinggi, memberikan pengalaman seru dan mendebarkan.", "Dewasa/Remaja", 18000, "⛵", 200));
     tambahWahana(new Wahana(8l, "Kereta Gantung", "Menikmati pemandangan dari atas dengan kereta yang berjalan di atas kabel.", "Semua Umur", 16000, "\uD83D\uDEA0", 200));
     tambahWahana(new Wahana(9l, "Kereta Mini", "Tur santai mengelilingi taman bermain menggunakan kereta kecil.", "Semua Umur", 15000, "\uD83D\uDE82", 200));
-    tambahWahana(new Wahana(null, "Bianglala Mini", "Versi mini dari bianglala untuk anak-anak, tetap menyenangkan dan aman.", "Anak-anak", 15000, "\uD83C\uDF88", 200));
-    tambahWahana(new Wahana(null, "Cinema 4D", "Wahana bioskop dengan efek gerak, suara, dan getaran untuk pengalaman realistis.", "Dewasa/Remaja", 20000, "\uD83C\uDFAC", 200));
+    tambahWahana(new Wahana(10l, "Bianglala Mini", "Versi mini dari bianglala untuk anak-anak, tetap menyenangkan dan aman.", "Anak-anak", 15000, "\uD83C\uDF88", 200));
+    tambahWahana(new Wahana(11l, "Cinema 4D", "Wahana bioskop dengan efek gerak, suara, dan getaran untuk pengalaman realistis.", "Dewasa/Remaja", 20000, "\uD83C\uDFAC", 200));
     tambahWahana(new Wahana(null, "Mobil Listrik", "Naik mobil mini di lintasan khusus, cocok untuk anak dan dewasa.", "Semua Umur", 16000, "\uD83D\uDE97", 200));
     tambahWahana(new Wahana(null, "Flying Chair", "Kursi terbang berputar di udara memberikan sensasi melayang yang seru.", "Semua Umur", 17000, "\uD83C\uDF1F", 200));
     }
