@@ -55,7 +55,8 @@
                 <tr th:each="item : ${keranjang}">
                     <td th:text="${item.wahana.namaWahana}"></td>
                     <td th:text="${item.jumlahTiket}"></td>
-                    <td th:text="|Rp ${#numbers.formatDecimal(item.totalHarga, 0, 0)}|"></td>
+                    <td th:text="|Rp ${#numbers.formatDecimal(item.totalHarga, 0, 'COMMA', 0, 'POINT')}|"></td>
+
 
                     <td>
                         <a th:href="@{/user/keranjang/delete/{id}(id=${item.id})}" class="btn btn-danger btn-action">
