@@ -40,6 +40,8 @@ public class WahanaAdminController {
         model.addAttribute("wahana", new Wahana());
         return "admin/wahana_form";
     }
+    
+    
 
     @PostMapping("/simpan")
     public String saveWahana(
