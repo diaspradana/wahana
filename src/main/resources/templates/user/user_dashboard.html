@@ -74,124 +74,7 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
-        <header class="header-desktop3 d-none d-lg-block">
-            <div class="section__content section__content--p35">
-                <div class="header3-wrap">
-                    <div class="header__logo">
-                        <a href="#">
-                            <img src="/images/icon/logo-white.png" alt="Logo" />
-                        </a>
-                    </div>
-                    <div class="header__navbar">
-                        <ul class="list-unstyled">
-                            <li class="has-sub active">
-                                <a href="#">
-                                    <i class="fas fa-home"></i>Home
-                                    <span class="bot-line"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/user/tiket">
-                                    <i class="fas fa-ticket-alt"></i>
-                                    <span class="bot-line"></span>Tiket</a>
-                            </li>
-                            <li>
-                                <a href="/user/keranjang">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span class="bot-line"></span>Keranjang</a>
-                            </li>
-                            <li>
-                                <a href="/user/history">
-                                    <i class="fas fa-history"></i>
-                                    <span class="bot-line"></span>Riwayat</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="header__tool">
-                        <div class="account-wrap">
-                            <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="/images/icon/avatar-01.jpg" alt="User" />
-                                </div>
-                                <div class="content">
-                                    <a class="js-acc-btn" href="#">User</a>
-                                </div>
-                                <div class="account-dropdown js-dropdown">
-                                    <div class="info clearfix">
-                                        <div class="image">
-                                            <a href="#">
-                                                <img src="/images/icon/avatar-01.jpg" alt="User" />
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="name">
-                                                <a href="#">User</a>
-                                            </h5>
-                                            <span class="email">user@example.com</span>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-account"></i>Account</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Setting</a>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__footer">
-                                        <a href="/logout">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- END HEADER DESKTOP-->
-
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile header-mobile-2 d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="/user/dashboard">
-                            <img src="/images/icon/logo-white.png" alt="Logo" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li class="active">
-                            <a href="/user/dashboard">
-                                <i class="fas fa-home"></i>Home</a>
-                        </li>
-                        <li>
-                            <a href="/user/tiket">
-                                <i class="fas fa-ticket-alt"></i>Tiket</a>
-                        </li>
-                        <li>
-                            <a href="/user/keranjang">
-                                <i class="fas fa-shopping-cart"></i>Keranjang</a>
-                        </li>
-                        <li>
-                            <a href="/user/history">
-                                <i class="fas fa-history"></i>Riwayat</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <div th:replace="layout_user/header :: userHeader"></div>
         <!-- END HEADER MOBILE -->
 
         <!-- PAGE CONTENT-->
@@ -228,17 +111,7 @@
             <!-- END BREADCRUMB-->
 
             <!-- WELCOME-->
-            <section class="welcome p-t-10">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="title-4">Cek yang populer di Wahana.com!
-                            </h1>
-                            <hr class="line-seprate">
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div th:replace="layout_user/welcome :: userWelcome"></div>
             <!-- END WELCOME-->
 
             <!-- POPULAR TICKETS -->
@@ -325,17 +198,7 @@
             <!-- END POPULAR TICKETS -->
 
             <!-- COPYRIGHT-->
-            <section class="p-t-60 p-b-20">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2023 Your Company. All rights reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div th:replace="layout_user/footer :: userFooter"></div>
             <!-- END COPYRIGHT-->
         </div>
     </div>
