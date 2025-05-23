@@ -15,9 +15,9 @@ public class WahanaService {
 
     public WahanaService() {
     tambahWahana(new Wahana(2l, "Kincir Ria", "Wahana ikonik yang membawa pengunjung menikmati pemandangan dari ketinggian.", "Semua Umur", 15000, "\uD83C\uDFA1", 200));
-    tambahWahana(new Wahana(null, "Rumah Hantu", "Rasakan ketegangan saat melewati lorong gelap dengan efek mengejutkan.", "Dewasa/Remaja", 18000, "\uD83D\uDC7B", 200));
-    tambahWahana(new Wahana(null, "Roller Coaster", "Lintasan cepat dan menantang untuk pengunjung yang suka adrenalin.", "Dewasa/Remaja", 20000, "\uD83C\uDFA2", 200));
-    tambahWahana(new Wahana(null, "Komedi Putar", "Wahana berputar dengan desain klasik, cocok untuk keluarga dan anak-anak.", "Semua Umur", 15000, "\uD83C\uDFA0", 200));
+    tambahWahana(new Wahana(3l, "Rumah Hantu", "Rasakan ketegangan saat melewati lorong gelap dengan efek mengejutkan.", "Dewasa/Remaja", 18000, "\uD83D\uDC7B", 200));
+    tambahWahana(new Wahana(4l, "Roller Coaster", "Lintasan cepat dan menantang untuk pengunjung yang suka adrenalin.", "Dewasa/Remaja", 20000, "\uD83C\uDFA2", 200));
+    tambahWahana(new Wahana(5l, "Komedi Putar", "Wahana berputar dengan desain klasik, cocok untuk keluarga dan anak-anak.", "Semua Umur", 15000, "\uD83C\uDFA0", 200));
     tambahWahana(new Wahana(null, "Rumah Kaca", "Labirin cermin yang menantang arah dan menciptakan efek visual menarik.", "Semua Umur", 15000, "\uD83E\uDE9E", 200));
     tambahWahana(new Wahana(null, "Kora-Kora", "Kapal besar yang berayun tinggi, memberikan pengalaman seru dan mendebarkan.", "Dewasa/Remaja", 18000, "⛵", 200));
     tambahWahana(new Wahana(null, "Kereta Gantung", "Menikmati pemandangan dari atas dengan kereta yang berjalan di atas kabel.", "Semua Umur", 16000, "\uD83D\uDEA0", 200));
