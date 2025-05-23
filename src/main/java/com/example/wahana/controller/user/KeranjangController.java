@@ -90,27 +90,30 @@ public class KeranjangController {
 
     @PostMapping("/bayar")
     public String prosesBayar(RedirectAttributes redirectAttributes) {
-        // Validasi stok sebelum checkout
-        for (Pemesanan p : keranjang) {
-            Wahana wahana = wahanaService.getWahanaById(p.getWahana().getId());
-            if (wahana == null || wahana.getStokTiket() < p.getJumlahTiket()) {
-                redirectAttributes.addFlashAttribute("error", "Stok wahana " + 
-                    (wahana != null ? wahana.getNamaWahana() : "") + " tidak mencukupi");
-                return "redirect:/user/keranjang";
+        try {
+            for (Pemesanan p : keranjang) {
+                Wahana wahana = wahanaService.getWahanaById(p.getWahana().getId());
+                if (wahana == null || wahana.getStokTiket() < p.getJumlahTiket()) {
+                    redirectAttributes.addFlashAttribute("error", "Stok wahana " +
+                        (wahana != null ? wahana.getNamaWahana() : "") + " tidak mencukupi");
+                    return "redirect:/user/keranjang";
+                }
             }
-        }
 
-        // Simpan semua pemesanan dan kurangi stok
-        for (Pemesanan p : keranjang) {
-            // Kurangi stok
-            wahanaService.kurangiStok(p.getWahana().getId(), p.getJumlahTiket());
-            
-            // Simpan ke riwayat pemesanan
-            pemesananService.savePemesanan(p);
-        }
+            for (Pemesanan p : keranjang) {
+                wahanaService.kurangiStok(p.getWahana().getId(), p.getJumlahTiket());
+                pemesananService.savePemesanan(p);
+            }
 
-        keranjang.clear();
-        redirectAttributes.addFlashAttribute("success", "Pembayaran berhasil!");
-        return "redirect:/user/history";
+            keranjang.clear();
+            redirectAttributes.addFlashAttribute("success", "Pembayaran berhasil!");
+            return "redirect:/user/history";
+
+        } catch (Exception e) {
+            e.printStackTrace(); // log ke console
+            redirectAttributes.addFlashAttribute("error", "Terjadi kesalahan saat memproses pembayaran.");
+            return "redirect:/user/keranjang";
+        }
     }
+
 }
