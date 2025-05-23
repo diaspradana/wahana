@@ -6,33 +6,53 @@
      <title>Keranjang Tiket</title>
 </head>
 <body>
-    <h2>Keranjang Tiket</h2>
-    <div th:if="${keranjang.isEmpty()}">
-        <p>Keranjang kosong.</p>
+    <div class="container">
+        <h2 class="mb-4"><i class="fas fa-shopping-cart me-2"></i>Keranjang Tiket</h2>
+        
+        <div th:if="${keranjang.isEmpty()}" class="alert alert-warning">
+            <p>Keranjang kosong.</p>
+        </div>
+        
+        <div th:unless="${keranjang.isEmpty()}">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama Wahana</th>
+                        <th>Jumlah Tiket</th>
+                        <th>Total Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${keranjang}">
+                        <td th:text="${item.wahana.namaWahana}"></td>
+                        <td th:text="${item.jumlahTiket}"></td>
+                        <td th:text="${'Rp ' + #numbers.formatDecimal(item.totalHarga, 0, 'COMMA', 0, 'POINT')}"></td>
+                        <td>
+                            <a th:href="@{/user/keranjang/delete/{id}(id=${item.id})}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Hapus
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mt-4">
+                <a th:href="@{/user/keranjang/checkout}" class="btn btn-primary">
+                    <i class="fas fa-check-circle me-2"></i> Lanjut ke Checkout
+                </a>
+            </div>
+            
+        </div>
+        <div class="mt-4">
+            <a href="/user/dashboard" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Kembali ke Dashboard
+            </a>
     </div>
-    <div th:unless="${keranjang.isEmpty()}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nama Wahana</th>
-                    <th>Jumlah Tiket</th>
-                    <th>Total Harga</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${keranjang}">
-                    <td th:text="${item.wahana.namaWahana}"></td>
-                    <td th:text="${item.jumlahTiket}"></td>
-                    <td th:text="${item.totalHarga}"></td>
-                    <td>
-                        <a th:href="@{/user/keranjang/delete/{id}(id=${item.id})}">Hapus</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <a th:href="@{/user/keranjang/checkout}">Lanjut ke Checkout</a>
-        </p>
+
+       
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
