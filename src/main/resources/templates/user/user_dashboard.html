@@ -1,30 +1,365 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
+    <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="User Dashboard">
+    <meta name="author" content="Your Company">
+    <meta name="keywords" content="dashboard, user">
+
+    <!-- Title Page-->
     <title>User Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fontfaces CSS-->
+    <link href="/css/font-face.css" rel="stylesheet" media="all">
+    <link href="/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/css/theme.css" rel="stylesheet" media="all">
+
+    <style>
+        .popular-categories {
+            margin-bottom: 30px;
+        }
+        .attraction-card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 150px;
+            object-fit: cover;
+        }
+        .attraction-price {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        .discount-price {
+            text-decoration: line-through;
+            color: #adb5bd;
+            font-size: 0.9em;
+        }
+        .rating {
+            color: #ffc107;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body>
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Selamat datang, User!</h1>
-            <a href="/logout" class="btn btn-outline-danger">Logout</a>
-        </div>
-        
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Menu Utama</h5>
-                <div class="d-grid gap-2">
-                    <a href="/user/tiket" class="btn btn-primary">Lihat Tiket Wahana</a>
-                    <a href="/user/keranjang" class="btn btn-secondary">Keranjang Saya</a>
-                    <a href="/user/history" class="btn btn-info">Riwayat Pemesanan</a>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="#">
+                            <img src="/images/icon/logo-white.png" alt="Logo" />
+                        </a>
+                    </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li class="has-sub active">
+                                <a href="#">
+                                    <i class="fas fa-home"></i>Home
+                                    <span class="bot-line"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/tiket">
+                                    <i class="fas fa-ticket-alt"></i>
+                                    <span class="bot-line"></span>Tiket</a>
+                            </li>
+                            <li>
+                                <a href="/user/keranjang">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="bot-line"></span>Keranjang</a>
+                            </li>
+                            <li>
+                                <a href="/user/history">
+                                    <i class="fas fa-history"></i>
+                                    <span class="bot-line"></span>Riwayat</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__tool">
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
+                                <div class="image">
+                                    <img src="/images/icon/avatar-01.jpg" alt="User" />
+                                </div>
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#">User</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="/images/icon/avatar-01.jpg" alt="User" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="#">User</a>
+                                            </h5>
+                                            <span class="email">user@example.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-account"></i>Account</a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-settings"></i>Setting</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="/logout">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile header-mobile-2 d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="/user/dashboard">
+                            <img src="/images/icon/logo-white.png" alt="Logo" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="active">
+                            <a href="/user/dashboard">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li>
+                            <a href="/user/tiket">
+                                <i class="fas fa-ticket-alt"></i>Tiket</a>
+                        </li>
+                        <li>
+                            <a href="/user/keranjang">
+                                <i class="fas fa-shopping-cart"></i>Keranjang</a>
+                        </li>
+                        <li>
+                            <a href="/user/history">
+                                <i class="fas fa-history"></i>Riwayat</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE -->
+
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="#">Home</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+                                            <span>/</span>
+                                        </li>
+                                        <li class="list-inline-item">Dashboard</li>
+                                    </ul>
+                                </div>
+                                <form class="au-form-icon--sm" action="" method="post">
+                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for attractions...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title-4">Cek yang populer di Wahana.com!
+                            </h1>
+                            <hr class="line-seprate">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END WELCOME-->
+
+            <!-- POPULAR TICKETS -->
+            <section class="statistic-chart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="section-title">Tiket Murah Meriah</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Museum Nasional -->
+                        <div class="col-lg-6">
+                            <div class="card attraction-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Museum Nasional</h5>
+                                    <p class="card-text text-muted">Gambir, Jakarta Pusat</p>
+                                    <p class="card-text">
+                                        <span class="rating">4,5/5</span> (1.2k Review)
+                                    </p>
+                                    <p class="card-text attraction-price">IDR 25.000</p>
+                                    <a href="#" class="btn btn-primary">Beli Tiket</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Jakarta Aquarium Safari -->
+                        <div class="col-lg-6">
+                            <div class="card attraction-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Jakarta Aquarium Safari</h5>
+                                    <p class="card-text text-muted">Grogol Petamburan, Jakarta...</p>
+                                    <p class="card-text">
+                                        <span class="rating">4,1/5</span> (15.9k Review)
+                                    </p>
+                                    <p class="card-text">
+                                        <span class="discount-price">IDR 165.000</span>
+                                        <span class="attraction-price"> IDR 121.250</span>
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Beli Tiket</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trans Studio Bandung -->
+                        <div class="col-lg-6">
+                            <div class="card attraction-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Trans Studio Bandung</h5>
+                                    <p class="card-text text-muted">Batununggal, Bandung</p>
+                                    <p class="card-text">
+                                        <span class="rating">4,2/5</span> (3.1k Review)
+                                    </p>
+                                    <p class="card-text">
+                                        <span class="discount-price">IDR 200.000</span>
+                                        <span class="attraction-price"> IDR 100.000</span>
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Beli Tiket</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trans Safari Indonesia Bogor -->
+                        <div class="col-lg-6">
+                            <div class="card attraction-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Trans Safari Indonesia Bogor</h5>
+                                    <p class="card-text text-muted">Cisarua, Bogor</p>
+                                    <p class="card-text">
+                                        <span class="rating">4,3/5</span> (14.2k Review)
+                                    </p>
+                                    <p class="card-text attraction-price">IDR 185.000</p>
+                                    <a href="#" class="btn btn-primary">Beli Tiket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="/user/tiket" class="btn btn-outline-primary">Lihat semua Atraksi</a>
+                    </div>
+                </div>
+            </section>
+            <!-- END POPULAR TICKETS -->
+
+            <!-- COPYRIGHT-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2023 Your Company. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END COPYRIGHT-->
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="/vendor/slick/slick.min.js"></script>
+    <script src="/vendor/wow/wow.min.js"></script>
+    <script src="/vendor/animsition/animsition.min.js"></script>
+    <script src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="/vendor/counter-up/jquery.counterup.min.js"></script>
+    <script src="/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="/vendor/select2/select2.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="/js/main.js"></script>
+
 </body>
+
 </html>

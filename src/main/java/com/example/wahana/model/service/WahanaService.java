@@ -14,7 +14,7 @@ public class WahanaService {
     private Long idCounter = 1L;
 
     public WahanaService() {
-    tambahWahana(new Wahana(null, "Kincir Ria", "Wahana ikonik yang membawa pengunjung menikmati pemandangan dari ketinggian.", "Semua Umur", 15000, "\uD83C\uDFA1", 200));
+    tambahWahana(new Wahana(2l, "Kincir Ria", "Wahana ikonik yang membawa pengunjung menikmati pemandangan dari ketinggian.", "Semua Umur", 15000, "\uD83C\uDFA1", 200));
     tambahWahana(new Wahana(null, "Rumah Hantu", "Rasakan ketegangan saat melewati lorong gelap dengan efek mengejutkan.", "Dewasa/Remaja", 18000, "\uD83D\uDC7B", 200));
     tambahWahana(new Wahana(null, "Roller Coaster", "Lintasan cepat dan menantang untuk pengunjung yang suka adrenalin.", "Dewasa/Remaja", 20000, "\uD83C\uDFA2", 200));
     tambahWahana(new Wahana(null, "Komedi Putar", "Wahana berputar dengan desain klasik, cocok untuk keluarga dan anak-anak.", "Semua Umur", 15000, "\uD83C\uDFA0", 200));

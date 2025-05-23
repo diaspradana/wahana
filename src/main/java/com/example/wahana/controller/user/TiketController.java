@@ -58,4 +58,5 @@ public class TiketController {
         model.addAttribute("wahana", wahana);
         return "user/tiket_detail";
     }
+
 }
