@@ -30,9 +30,53 @@
 
     <!-- Main CSS-->
     <link th:href="@{/css/theme.css}" rel="stylesheet" media="all">
+
+    <!-- Custom Style for Background -->
+    <style>
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: none !important; /* Hapus gradasi background default jika ada */
+        }
+
+        .page-content--bge5,
+        .login-wrap {
+            background: transparent !important;
+        }
+
+        .page-wrapper {
+            background: transparent !important;
+        }
+        .login-content {
+            background: rgba(170, 166, 109, 0.9); /* agar form tetap terbaca, tapi transparan */
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .login-form label {
+            color: #000000 !important;
+            font-weight: 700;        
+            font-size: 16px;         
+        }
+    </style>
 </head>
 
 <body class="animsition">
+    <video autoplay muted loop id="bg-video">
+    <source th:src="@{/videos/background.mp4}" type="video/mp4">
+    Browser Anda tidak mendukung video background.
+    </video>
+
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">
@@ -45,18 +89,19 @@
                         </div>
                         <div class="login-form">
                             <form th:action="@{/register}" method="post" th:object="${user}">
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="au-input au-input--full" type="text" th:field="*{username}" id="nama" placeholder="Username" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" nth:field="*{email}" id="email" placeholder="Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" th:field="*{password}" placeholder="Password" required>
-                                </div>
+                                <div class="login-form">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input class="au-input au-input--full" type="text" th:field="*{username}" id="nama" placeholder="Username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input class="au-input au-input--full" type="email" th:field="*{email}" id="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="au-input au-input--full" type="password" th:field="*{password}" placeholder="Password" required>
+                                    </div>
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="agree" required> Agree the terms and policy
@@ -65,9 +110,9 @@
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Register</button>
                             </form>
                             <div class="register-link">
-                                <p>
+                                <p style="color: #000000; font-weight: bold;">
                                     Already have an account?
-                                    <a th:href="@{/login}">Sign In</a>
+                                    <a th:href="@{/login}" style="color: #990505; font-weight: bold;">Sign In</a>
                                 </p>
                             </div>
                         </div>
