@@ -23,55 +23,44 @@
 
     <!-- Custom Style for Background -->
     <style>
-        body.animsition {
-            background: linear-gradient(to right,rgb(134, 123, 232),rgb(238, 171, 215));
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
         }
 
-        .login-wrap {
-            background:rgba(159, 139, 168, 0.47);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        body {
+            margin: 0;
+            padding: 0;
+            background: none !important; /* Hapus gradasi background default jika ada */
         }
 
-        .login-logo img {
-            max-height: 80px;
+        .page-wrapper {
+            position: relative;
         }
 
+        .page-wrapper {
+        background: transparent !important;
+        }
         .login-content {
+            background: rgba(255, 255, 255, 0.9); /* agar form tetap terbaca, tapi transparan */
+            border-radius: 10px;
             padding: 20px;
         }
-
-        .login-form .form-group label {
-            font-weight: 600;
-        }
-
-        .au-btn--green {
-            background: #28a745;
-            border: none;
-        }
-
-        .au-btn--green:hover {
-            background: #218838;
-        }
-
-        .register-link p {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .register-link a {
-            color: #fff;
-            font-weight: bold;
-        }
     </style>
+
 </head>
 
 <body class="animsition">
+    <video autoplay muted loop id="bg-video">
+    <source th:src="@{/videos/background.mp4}" type="video/mp4">
+    Browser Anda tidak mendukung video background.
+    </video>
+
     <div class="page-wrapper">
         <div class="container">
             <div class="login-wrap">
