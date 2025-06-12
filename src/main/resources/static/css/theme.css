@@ -462,15 +462,15 @@ section {
 
 .au-btn:hover {
     color: #fff;
-    background: #3868cd;
+    background: #edc043;
 }
 
 .au-btn--blue2 {
-    background: #00aced;
+    background: #ed9a00;
 }
 
 .au-btn--blue2:hover {
-    background: #00a2e3;
+    background: #b79004;
 }
 
 .au-btn--block {
@@ -484,7 +484,7 @@ section {
 }
 
 .au-btn--blue {
-    background: #4272d7;
+    background: #dec356;
 }
 
 .au-btn--green {
@@ -836,12 +836,12 @@ section {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    background: #4272d7;
+    background: #c48e19;
     margin-left: -3px;
 }
 
 .au-btn--submit:hover {
-    background: #3868cd;
+    background: #9f7418;
 }
 
 .au-btn--submit > i {
@@ -970,7 +970,7 @@ section {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background: #4272d7;
+    background: #d7ab30;
 }
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
@@ -1538,7 +1538,7 @@ section {
 }
 
 .account-dropdown__item a:hover {
-    background: #4272d7;
+    background: #d3a224;
     color: #fff;
 }
 
@@ -1565,7 +1565,7 @@ section {
 }
 
 .account-dropdown__footer a:hover {
-    background: #4272d7;
+    background: #d7a842;
     color: #fff;
 }
 
@@ -1641,11 +1641,11 @@ section {
 }
 
 .navbar-sidebar .navbar__list li a:hover {
-    color: #4272d7;
+    color: #dfa63a;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
-    color: #4272d7;
+    color: #dd9819;
 }
 
 .has-sub {
@@ -1758,7 +1758,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a:hover {
-    color: #4272d7;
+    color: #e0b836;
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a > i {
@@ -2141,7 +2141,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #365cad;
+    background: #b9941a;
     padding: 0 35px;
 }
 
@@ -2246,7 +2246,7 @@ section {
 }
 
 .navbar-sidebar2 .navbar__list li:hover > a {
-    color: #4272d7;
+    color: #d49e2a;
 }
 
 .navbar-sidebar2 .navbar__list li a {
@@ -2262,7 +2262,7 @@ section {
 }
 
 .navbar-sidebar2 .navbar__list li.active > a {
-    color: #4272d7;
+    color: #d49e2a;
 }
 
 .navbar-sidebar2 .navbar__sub-list {
@@ -2300,7 +2300,7 @@ section {
 
 .header-desktop2 {
     height: 75px;
-    background: #4272d7;
+    background: #d49e2a;
     position: fixed;
     z-index: 1001;
     top: 0;
@@ -2700,7 +2700,7 @@ section {
 }
 
 .header__navbar ul li a:hover {
-    color: #4272d7;
+    color: #d49e2a;
 }
 
 .header__navbar ul li a:hover .bot-line {
@@ -2734,7 +2734,7 @@ section {
 }
 
 .header__navbar ul li.active > a {
-    color: #4272d7;
+    color: #d49e2a;
 }
 
 .header__navbar ul li.active > a .bot-line {
@@ -2801,7 +2801,7 @@ section {
 }
 
 .header__navbar .header3-sub-list li a:hover {
-    color: #4272d7;
+    color: #d49e2a;
     background: #f7f7f7;
 }
 
@@ -2854,7 +2854,7 @@ section {
     position: absolute;
     width: 100%;
     height: 3px;
-    background: #4272d7;
+    background: #d49e2a;
     left: 0;
     bottom: 0;
     opacity: 0;
@@ -3043,7 +3043,7 @@ section {
 }
 
 .navbar-sidebar3 .navbar__list li.active > a {
-    background: #4272d7;
+    background: #d49e2a;
     color: #fff;
 }
 

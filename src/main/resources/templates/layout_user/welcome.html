@@ -14,7 +14,7 @@
             Temukan wahana dan tiket terpopuler yang sering dicari pengunjung.
             Jangan lewatkan keseruan dan promo menarik setiap harinya!
             </p>
-            <a href="/user/tiket" 
+            <a href="/user/tiket" class="shine-button"
             style="display: inline-block; margin-top: 30px; padding: 12px 30px; font-size: 1.1rem; color:rgb(143, 96, 19); background: #ffdd57; border-radius: 30px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 10px rgba(170, 139, 16, 0.5); transition: background 0.3s ease;">
             Lihat Tiket Populer
             </a>
@@ -54,6 +54,37 @@
             0 0 40px rgba(237, 213, 72, 0.6),
             0 0 80px rgba(184, 130, 31, 0.4);
         transition: all 0.3s ease-in-out;
+    }
+    .shine-button {
+        display: inline-block;
+        padding: 30px;
+        background-color: #f4c430; /* warna utama seperti di gambar */
+        color: #3c2e00;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        box-shadow:
+            0 0 30px rgba(255, 213, 0, 0.5),
+            0 0 60px rgba(255, 213, 0, 0.3);
+        transition: all 0.3s ease-in-out;
+        filter: drop-shadow(0 0 15px rgba(255, 213, 0, 0.6));
+    }
+
+    .shine-button:hover {
+        box-shadow:
+            0 0 40px rgba(255, 213, 0, 0.7),
+            0 0 80px rgba(255, 213, 0, 0.4);
+        filter: drop-shadow(0 0 20px rgba(255, 200, 0, 0.9));
+        transform: translateY(-4px);
+    }
+
+    .shine-button:active {
+        background-color: #d9b100;
+        box-shadow:
+            0 0 25px rgba(204, 170, 0, 0.6),
+            0 0 50px rgba(204, 170, 0, 0.4);
+        filter: drop-shadow(0 0 12px rgba(204, 170, 0, 0.5));
     }
     </style>
     <!-- END WELCOME -->
