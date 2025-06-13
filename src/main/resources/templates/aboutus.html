@@ -47,13 +47,22 @@
         }
 
         .btn-brown-dark {
-            background-color: #5C4033; 
+            background-color: #8B4513; 
             color: rgb(255, 255, 255);
             border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px 2px rgba(253, 210, 171, 0.8);
         }
 
         .btn-brown-dark:hover {
-            background-color: #714f2d; 
+            background-color: #FFD700; 
+            color: black;
+            box-shadow: 0 0 25px 10px rgba(255, 223, 0, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .attraction-card {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -72,7 +81,7 @@
 
         <!-- Tombol kembali selalu tampil -->
         <div class="mt-4">
-            <a th:href="@{/user/dashboard}" class="btn btn-brown-dark">
+            <a th:href="@{/user/dashboard}" class="btn btn-brown-dark attraction-card">
                 <i class="fas fa-arrow-left me-2"></i> Kembali ke Dashboard
             </a>
         </div>
