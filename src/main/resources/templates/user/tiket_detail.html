@@ -15,7 +15,7 @@
         }
         .price-tag {
             font-size: 2rem;
-            color: #0d6efd;
+            color: #cf7c09;
             font-weight: bold;
         }
         .wahana-image {
@@ -28,13 +28,36 @@
             margin: 0 auto;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
+        .btn-action {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+
+        .btn-brown-dark {
+            background-color: #8B4513; 
+            color: rgb(255, 255, 255);
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px 2px rgba(253, 210, 171, 0.8);
+        }
+
+        .btn-brown-dark:hover {
+            background-color: #FFD700; 
+            color: black;
+            box-shadow: 0 0 25px 10px rgba(255, 223, 0, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .attraction-card {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container py-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <a href="/user/tiket" class="btn btn-outline-secondary mb-4">← Kembali ke Daftar Wahana</a>
+                <a href="/user/tiket" class="btn btn-brown-dark mb-4">← Kembali ke Daftar Wahana</a>
 
                 <!-- Flash Messages -->
                 <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
@@ -86,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-end">
-                                    <button type="submit" class="btn btn-primary btn-lg">
+                                    <button type="submit" class="btn btn-brown-dark">
                                         <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
                                     </button>
                                 </div>
